@@ -41,7 +41,7 @@ public class ContainerConfigTest extends TestCase {
   private static final String NESTED_VALUE = "Nested value";
   private static final String NESTED_ALT_VALUE = "Nested value alt";
 
-  private static final String CHILD_SYNDICATOR = "child";
+  private static final String CHILD_CONTAINER = "child";
 
   private static final String ARRAY_NAME = "array value";
   private static final String[] ARRAY_VALUE = new String[]{"Hello", "World"};
@@ -84,7 +84,7 @@ public class ContainerConfigTest extends TestCase {
 
   public void testCascade() throws Exception {
     JSONObject json = new JSONObject();
-    json.put(CONTAINER_KEY, new String[]{CHILD_SYNDICATOR});
+    json.put(CONTAINER_KEY, new String[]{CHILD_CONTAINER});
     json.put(ARRAY_NAME, ARRAY_ALT_VALUE);
 
     // small nested data.
@@ -95,14 +95,14 @@ public class ContainerConfigTest extends TestCase {
 
     config.loadFromString(json.toString());
 
-    String value = config.get(CHILD_SYNDICATOR, TOP_LEVEL_NAME);
+    String value = config.get(CHILD_CONTAINER, TOP_LEVEL_NAME);
     assertEquals(TOP_LEVEL_VALUE, value);
 
-    JSONObject nestedObj = config.getJsonObject(CHILD_SYNDICATOR, NESTED_KEY);
+    JSONObject nestedObj = config.getJsonObject(CHILD_CONTAINER, NESTED_KEY);
     String nestedValue = nestedObj.getString(NESTED_NAME);
     assertEquals(NESTED_ALT_VALUE, nestedValue);
 
-    String arrayValue = config.get(CHILD_SYNDICATOR, ARRAY_NAME);
+    String arrayValue = config.get(CHILD_CONTAINER, ARRAY_NAME);
     assertEquals(ARRAY_ALT_VALUE, arrayValue);
 
     // Verify that the parent value wasn't overwritten as well.
