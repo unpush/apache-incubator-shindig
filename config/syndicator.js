@@ -33,7 +33,7 @@
 
 // Syndicator must be an array; this allows multiple syndicators
 // to share configuration.
-{"gadgets.syndicator" : ["default"],
+{"gadgets.container" : ["default"],
 
 // Set of regular expressions to validate the parent parameter. This is
 // necessary to support situations where you want a single syndicator to support

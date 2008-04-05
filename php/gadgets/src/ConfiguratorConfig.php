@@ -2,7 +2,7 @@
 
 class ContainerConfig {
 	public $default_syndicator = 'default';
-	public $syndicator_key = 'gadgets.syndicator';
+	public $syndicator_key = 'gadgets.container';
 	private $config = array();
 
 	public function __construct($defaultSyndicator)
@@ -38,7 +38,7 @@ class ContainerConfig {
 		$contents = preg_replace('/\/\/.*$/m', '', preg_replace('@/\\*(?:.|[\\n\\r])*?\\*/@', '', $contents));
 		$config = json_decode($contents, true);
 		if (! isset($config[$this->syndicator_key][0])) {
-			throw new Exception("No gadgets.syndicator value set");
+			throw new Exception("No gadgets.container value set");
 		}
 		$syndicator = $config[$this->syndicator_key][0];
 		$this->config[$syndicator] = array();
