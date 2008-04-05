@@ -193,7 +193,7 @@ public class JsonRpcGadgetContext extends GadgetContext {
     locale = getLocale(context);
     view = context.optString("view");
     ignoreCache = context.optBoolean("ignoreCache");
-    container = context.optString("syndicator");
+    container = context.optString("container");
     debug = context.optBoolean("debug");
     renderingContext = RenderingContext.METADATA;
   }
