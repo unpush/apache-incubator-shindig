@@ -244,7 +244,7 @@ public class JsFeatureLoader {
                               RenderingContext renderingContext)
       throws GadgetException {
     String syndicator = XmlUtil.getAttribute(context, "synd",
-        SyndicatorConfig.DEFAULT_SYNDICATOR);
+        ContainerConfig.DEFAULT_SYNDICATOR);
     NodeList libraries = context.getElementsByTagName("script");
     for (int i = 0, j = libraries.getLength(); i < j; ++i) {
       Element script = (Element)libraries.item(i);

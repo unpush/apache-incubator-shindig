@@ -27,7 +27,7 @@ import org.apache.shindig.gadgets.GadgetFeatureRegistry;
 import org.apache.shindig.gadgets.GadgetServer;
 import org.apache.shindig.gadgets.JsLibrary;
 import org.apache.shindig.gadgets.RemoteContent;
-import org.apache.shindig.gadgets.SyndicatorConfig;
+import org.apache.shindig.gadgets.ContainerConfig;
 import org.apache.shindig.gadgets.spec.Feature;
 import org.apache.shindig.gadgets.spec.LocaleSpec;
 import org.apache.shindig.gadgets.spec.MessageBundle;
@@ -71,7 +71,7 @@ public class GadgetRenderingTask {
   private final HttpServletResponse response;
   private final GadgetServer server;
   private final GadgetFeatureRegistry registry;
-  private final SyndicatorConfig syndicatorConfig;
+  private final ContainerConfig syndicatorConfig;
   private final UrlGenerator urlGenerator;
   private final GadgetContext context;
   private final List<GadgetContentFilter> filters;
@@ -424,7 +424,7 @@ public class GadgetRenderingTask {
   private boolean validateParent() {
     String syndicator = request.getParameter("synd");
     if (syndicator == null) {
-      syndicator = SyndicatorConfig.DEFAULT_SYNDICATOR;
+      syndicator = ContainerConfig.DEFAULT_SYNDICATOR;
     }
 
     String parent = request.getParameter("parent");
@@ -461,7 +461,7 @@ public class GadgetRenderingTask {
                              HttpServletResponse response,
                              GadgetServer server,
                              GadgetFeatureRegistry registry,
-                             SyndicatorConfig syndicatorConfig,
+                             ContainerConfig syndicatorConfig,
                              UrlGenerator urlGenerator) {
     this.request = request;
     this.response = response;

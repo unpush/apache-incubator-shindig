@@ -91,7 +91,7 @@ class JsLibraryFeature extends GadgetFeature {
         libs = contextLibs.get(context.getSyndicator());
         if (libs == null) {
           // Try default.
-          libs = contextLibs.get(SyndicatorConfig.DEFAULT_SYNDICATOR);
+          libs = contextLibs.get(ContainerConfig.DEFAULT_SYNDICATOR);
         }
       }
     }

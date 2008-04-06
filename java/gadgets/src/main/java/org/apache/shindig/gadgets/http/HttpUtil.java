@@ -21,7 +21,7 @@ package org.apache.shindig.gadgets.http;
 
 import org.apache.shindig.gadgets.Gadget;
 import org.apache.shindig.gadgets.GadgetContext;
-import org.apache.shindig.gadgets.SyndicatorConfig;
+import org.apache.shindig.gadgets.ContainerConfig;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.View;
 
@@ -82,7 +82,7 @@ public class HttpUtil {
    * @param context
    * @param features
    */
-  public static JSONObject getJsConfig(SyndicatorConfig config,
+  public static JSONObject getJsConfig(ContainerConfig config,
       GadgetContext context, Set<String> features) {
     JSONObject syndFeatures = config.getJsonObject(context.getSyndicator(),
                                                    "gadgets.features");
@@ -105,7 +105,7 @@ public class HttpUtil {
    * @param config
    * @return The most appropriate view for this request.
    */
-  public static View getView(Gadget gadget, SyndicatorConfig config) {
+  public static View getView(Gadget gadget, ContainerConfig config) {
     GadgetContext context = gadget.getContext();
     String viewName = context.getView();
     GadgetSpec spec = gadget.getSpec();
