@@ -1,23 +1,23 @@
 <?
 
 class ContainerConfig {
-	public $default_syndicator = 'default';
-	public $syndicator_key = 'gadgets.container';
+	public $default_container = 'default';
+	public $container_key = 'gadgets.container';
 	private $config = array();
 
-	public function __construct($defaultSyndicator)
+	public function __construct($defaultContainer)
 	{
-		if (! empty($defaultSyndicator)) {
-			$this->loadContainers($defaultSyndicator);
+		if (! empty($defaultContainer)) {
+			$this->loadContainers($defaultContainer);
 		}
 	}
 
-	private function loadContainers($syndicators)
+	private function loadContainers($containers)
 	{
-		if (! file_exists($syndicators) || ! is_dir($syndicators)) {
+		if (! file_exists($containers) || ! is_dir($containers)) {
 			throw new Exception("Invalid syndicator path");
 		}
-		foreach (glob("$syndicators/*") as $file) {
+		foreach (glob("$containers/*") as $file) {
 			if (! is_readable($file)) {
 				throw new Exception("Could not read syndicator config: $file");
 			}
@@ -37,10 +37,10 @@ class ContainerConfig {
 		// note: the json parser also crashes on trailing ,'s in records so please don't use them
 		$contents = preg_replace('/\/\/.*$/m', '', preg_replace('@/\\*(?:.|[\\n\\r])*?\\*/@', '', $contents));
 		$config = json_decode($contents, true);
-		if (! isset($config[$this->syndicator_key][0])) {
+		if (! isset($config[$this->container_key][0])) {
 			throw new Exception("No gadgets.container value set");
 		}
-		$syndicator = $config[$this->syndicator_key][0];
+		$syndicator = $config[$this->container_key][0];
 		$this->config[$syndicator] = array();
 		foreach ($config as $key => $val) {
 			$this->config[$syndicator][$key] = $val;
