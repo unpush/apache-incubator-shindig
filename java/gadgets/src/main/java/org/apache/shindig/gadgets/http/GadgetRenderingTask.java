@@ -422,9 +422,13 @@ public class GadgetRenderingTask {
    *     container.
    */
   private boolean validateParent() {
-    String container = request.getParameter("synd");
+    String container = request.getParameter("container");
     if (container == null) {
-      container = ContainerConfig.DEFAULT_CONTAINER;
+      // The paramater used to be called 'synd' FIXME: schedule removal
+      container = request.getParameter("synd");
+      if (container == null) {
+        container = ContainerConfig.DEFAULT_CONTAINER;
+      }
     }
 
     String parent = request.getParameter("parent");
