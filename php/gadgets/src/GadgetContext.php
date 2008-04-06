@@ -183,7 +183,7 @@ class GadgetContext {
 	private function instanceContainerConfig()
 	{
 		global $config;
-		return new ContainerConfig($config['syndicator_path']);
+		return new ContainerConfig($config['container_path']);
 	}
 	
 	public function getContainer()
