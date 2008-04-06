@@ -84,12 +84,12 @@ public class HttpUtil {
    */
   public static JSONObject getJsConfig(ContainerConfig config,
       GadgetContext context, Set<String> features) {
-    JSONObject syndFeatures = config.getJsonObject(context.getContainer(),
+    JSONObject containerFeatures = config.getJsonObject(context.getContainer(),
                                                    "gadgets.features");
-    if (syndFeatures != null) {
+    if (containerFeatures != null) {
       String[] featArray = features.toArray(new String[features.size()]);
       try {
-        return new JSONObject(syndFeatures, featArray);
+        return new JSONObject(containerFeatures, featArray);
       } catch (JSONException e) {
         return null;
       }
