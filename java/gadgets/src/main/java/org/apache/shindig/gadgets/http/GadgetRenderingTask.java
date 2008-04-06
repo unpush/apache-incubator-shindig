@@ -422,9 +422,9 @@ public class GadgetRenderingTask {
    *     container.
    */
   private boolean validateParent() {
-    String syndicator = request.getParameter("synd");
-    if (syndicator == null) {
-      syndicator = ContainerConfig.DEFAULT_CONTAINER;
+    String container = request.getParameter("synd");
+    if (container == null) {
+      container = ContainerConfig.DEFAULT_CONTAINER;
     }
 
     String parent = request.getParameter("parent");
@@ -437,7 +437,7 @@ public class GadgetRenderingTask {
 
     try {
       JSONArray parents
-          = containerConfig.getJsonArray(syndicator, "gadgets.parent");
+          = containerConfig.getJsonArray(container, "gadgets.parent");
 
       if (parents == null) {
         return true;
