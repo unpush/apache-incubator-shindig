@@ -98,7 +98,7 @@ public class GadgetRenderingTask {
 
     if (!validateParent()) {
       response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-          "Unsupported parent parameter. Check your syndicator code.");
+          "Unsupported parent parameter. Check your container code.");
       return;
     }
 
@@ -419,7 +419,7 @@ public class GadgetRenderingTask {
    * Validates that the parent parameter was acceptable.
    *
    * @return True if the parent parameter is valid for the current
-   *     syndicator.
+   *     container.
    */
   private boolean validateParent() {
     String syndicator = request.getParameter("synd");

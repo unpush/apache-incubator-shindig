@@ -168,7 +168,7 @@ public class HttpGadgetContext extends GadgetContext {
 
   /**
    * @param req
-   * @return The syndicator, if set, or null.
+   * @return The container, if set, or null.
    */
   private static String getContainer(HttpServletRequest req) {
     return req.getParameter("synd");

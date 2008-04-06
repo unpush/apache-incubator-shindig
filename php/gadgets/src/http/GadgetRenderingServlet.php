@@ -94,7 +94,7 @@ class GadgetRenderingServlet extends HttpServlet {
 	/**
 	 * Outputs a html content type gadget.
 	 * It creates a html page, with the javascripts from the features inline into the page, plus
-	 * calls to 'gadgets.config.init' with the syndicator configuration (config/container.js) and
+	 * calls to 'gadgets.config.init' with the container configuration (config/container.js) and
 	 * 'gadgets.Prefs.setMessages_' with all the substitutions. For external javascripts it adds
 	 * a <script> tag.
 	 *

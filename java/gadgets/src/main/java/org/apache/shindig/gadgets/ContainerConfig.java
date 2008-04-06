@@ -55,7 +55,7 @@ public class ContainerConfig {
       = Logger.getLogger("org.apache.shindig.gadgets");
 
   /**
-   * @return The set of all syndicators that are currently registered.
+   * @return The set of all containers that are currently registered.
    */
   public Set<String> getContainers() {
     return Collections.unmodifiableSet(config.keySet());
@@ -66,7 +66,7 @@ public class ContainerConfig {
    * number, ensuring that it can be safely passed to javascript without any
    * additional filtering.
    *
-   * @param syndicator
+   * @param container
    * @param parameter The value to fetch. May be specified as an x-path like
    *     object reference such as "gadgets/features/views".
    * @return A configuration parameter as a JSON object or null if not set or
@@ -98,10 +98,10 @@ public class ContainerConfig {
   }
 
   /**
-   * Attempts to fetch a parameter for the given syndicator, or the default
-   * syndicator if the specified syndicator is not supported.
+   * Attempts to fetch a parameter for the given container, or the default
+   * container if the specified container is not supported.
    *
-   * @param syndicator
+   * @param container
    * @param parameter
    * @return A configuration parameter as a string, or null if not set.
    */
@@ -111,7 +111,7 @@ public class ContainerConfig {
   }
 
   /**
-   * @param syndicator
+   * @param container
    * @param parameter
    * @return A configuration parameter as a JSON object or null if not set or
    *     can't be interpreted as JSON.
@@ -125,7 +125,7 @@ public class ContainerConfig {
   }
 
   /**
-   * @param syndicator
+   * @param container
    * @param parameter
    * @return A configuration parameter as a JSON object or null if not set or
    *     can't be interpreted as JSON.
@@ -139,7 +139,7 @@ public class ContainerConfig {
   }
 
   /**
-   * Loads syndicators from directories recursively.
+   * Loads containers from directories recursively.
    *
    * Only files with a .js or .json extension will be loaded.
    *
@@ -149,7 +149,7 @@ public class ContainerConfig {
   private void loadFiles(File[] files) throws GadgetException {
     try {
       for (File file : files) {
-        logger.info("Reading syndicator config: " + file.getName());
+        logger.info("Reading container config: " + file.getName());
         if (file.isDirectory()) {
           loadFiles(file.listFiles());
         } else if (file.getName().endsWith(".js") ||
@@ -164,13 +164,13 @@ public class ContainerConfig {
  
   /**
    * Loads resources recursively.
-   * @param files The base paths to look for syndicator.xml
+   * @param files The base paths to look for container.xml
    * @throws GadgetException
    */
   private void loadResources(String[] files)  throws GadgetException {
     try {
       for (String entry : files) {
-        logger.info("Reading syndicator config: " + entry);
+        logger.info("Reading container config: " + entry);
         String content = ResourceLoader.getContent(entry);
         loadFromString(content);
       }
@@ -235,7 +235,7 @@ public class ContainerConfig {
   }
 
   /**
-   * Processes a syndicator file.
+   * Processes a container file.
    * @param json
    */
   public void loadFromString(String json) throws GadgetException {
@@ -265,7 +265,7 @@ public class ContainerConfig {
   }
 
   /**
-   * Loads syndicators from the specified resource. Follows the same rules
+   * Loads containers from the specified resource. Follows the same rules
    * as {@code JsFeatureLoader.loadFeatures} for locating resources.
    * This call is not thread safe, so you should only call loadContainers()
    * from within the GadgetServerConfig.

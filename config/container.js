@@ -17,7 +17,7 @@
  * under the License.
  */
 
-// Default syndicator configuration. Rather than replacing this
+// Default container configuration. Rather than replacing this
 // file, you should create your own container.js file and
 // load it directly by modifying the value of web.xml.
 // All configurations will automatically inherit values from this
@@ -36,7 +36,7 @@
 {"gadgets.container" : ["default"],
 
 // Set of regular expressions to validate the parent parameter. This is
-// necessary to support situations where you want a single syndicator to support
+// necessary to support situations where you want a single container to support
 // multiple possible host names (such as for localized domains, such as
 // <language>.example.org. If left as null, the parent parameter will be
 // ignored; otherwise, any requests that do not include a parent
