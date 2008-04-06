@@ -1,6 +1,6 @@
 <?
 
-class SyndicatorConfig {
+class ContainerConfig {
 	public $default_syndicator = 'default';
 	public $syndicator_key = 'gadgets.syndicator';
 	private $config = array();
