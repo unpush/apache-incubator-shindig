@@ -60,13 +60,13 @@ class GadgetContext {
 	
 	private function getContainerParam()
 	{
-		$synd = 'default';
+		$container = 'default';
 		if (!empty($_GET['synd'])) {
-			$synd = $_GET['synd'];
+			$container = $_GET['synd'];
 		} elseif (!empty($_POST['synd'])) {
-			$synd = $_POST['synd'];
+			$container = $_POST['synd'];
 		}
-		return $synd;
+		return $container;
 	}
 
 	private function getIgnoreCacheParam()
