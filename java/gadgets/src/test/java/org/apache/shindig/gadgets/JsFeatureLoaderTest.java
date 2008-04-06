@@ -58,7 +58,7 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
     assertEquals(DEF_JS_CONTENT, libs.get(0).getContent());
   }
 
-  public void testMultiSyndicators() throws Exception {
+  public void testMultiContainers() throws Exception {
     String xml = "<feature>" +
                  "  <name>" + FEATURE_NAME + "</name>" +
                  "  <gadget synd=\"" + SYND_A + "\">" +
@@ -121,7 +121,7 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
 class SyndContext extends GadgetContext {
   private final String syndicator;
   @Override
-  public String getSyndicator() {
+  public String getContainer() {
     return syndicator;
   }
   public SyndContext(String syndicator) {

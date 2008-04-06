@@ -159,9 +159,9 @@ public class HttpGadgetContext extends GadgetContext {
 
   private final String syndicator;
   @Override
-  public String getSyndicator() {
+  public String getContainer() {
     if (syndicator == null) {
-      return super.getSyndicator();
+      return super.getContainer();
     }
     return syndicator;
   }
@@ -170,7 +170,7 @@ public class HttpGadgetContext extends GadgetContext {
    * @param req
    * @return The syndicator, if set, or null.
    */
-  private static String getSyndicator(HttpServletRequest req) {
+  private static String getContainer(HttpServletRequest req) {
     return req.getParameter("synd");
   }
 
@@ -251,7 +251,7 @@ public class HttpGadgetContext extends GadgetContext {
     locale = getLocale(request);
     renderingContext = getRenderingContext(request);
     ignoreCache = getIgnoreCache(request);
-    syndicator = getSyndicator(request);
+    syndicator = getContainer(request);
     debug = getDebug(request);
     view = getView(request);
     userPrefs = getUserPrefs(request);
