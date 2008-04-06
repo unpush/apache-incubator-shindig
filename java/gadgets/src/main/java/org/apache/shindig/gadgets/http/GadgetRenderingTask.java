@@ -71,7 +71,7 @@ public class GadgetRenderingTask {
   private final HttpServletResponse response;
   private final GadgetServer server;
   private final GadgetFeatureRegistry registry;
-  private final ContainerConfig syndicatorConfig;
+  private final ContainerConfig containerConfig;
   private final UrlGenerator urlGenerator;
   private final GadgetContext context;
   private final List<GadgetContentFilter> filters;
@@ -128,7 +128,7 @@ public class GadgetRenderingTask {
    */
   private void outputGadget(Gadget gadget) throws IOException, GadgetException {
     String viewName = context.getView();
-    View view = HttpUtil.getView(gadget, syndicatorConfig);
+    View view = HttpUtil.getView(gadget, containerConfig);
     if (view == null) {
         throw new GadgetException(GadgetException.Code.UNKNOWN_VIEW_SPECIFIED,
             "No appropriate view could be found for this gadget");
@@ -362,7 +362,7 @@ public class GadgetRenderingTask {
    */
   private void appendJsConfig(Gadget gadget, Set<String> reqs,
       StringBuilder js) {
-    JSONObject json = HttpUtil.getJsConfig(syndicatorConfig, context, reqs);
+    JSONObject json = HttpUtil.getJsConfig(containerConfig, context, reqs);
     // Add gadgets.util support. This is calculated dynamically based on
     // request inputs.
     ModulePrefs prefs = gadget.getSpec().getModulePrefs();
@@ -441,7 +441,7 @@ public class GadgetRenderingTask {
 
     try {
       JSONArray parents
-          = syndicatorConfig.getJsonArray(syndicator, "gadgets.parent");
+          = containerConfig.getJsonArray(syndicator, "gadgets.parent");
 
       if (parents == null) {
         return true;
@@ -465,13 +465,13 @@ public class GadgetRenderingTask {
                              HttpServletResponse response,
                              GadgetServer server,
                              GadgetFeatureRegistry registry,
-                             ContainerConfig syndicatorConfig,
+                             ContainerConfig containerConfig,
                              UrlGenerator urlGenerator) {
     this.request = request;
     this.response = response;
     this.server = server;
     this.registry = registry;
-    this.syndicatorConfig = syndicatorConfig;
+    this.containerConfig = containerConfig;
     this.urlGenerator = urlGenerator;
     context = new HttpGadgetContext(request);
     filters = new LinkedList<GadgetContentFilter>();

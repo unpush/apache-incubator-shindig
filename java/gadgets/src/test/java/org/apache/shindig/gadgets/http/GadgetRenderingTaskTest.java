@@ -122,7 +122,7 @@ public class GadgetRenderingTaskTest extends HttpTestFixture {
     JSONObject views = new JSONObject().put("dummy", dummy);
     JSONObject features = new JSONObject().put("views", views);
     json.put("gadgets.features", features);
-    syndicatorConfig.loadFromString(json.toString());
+    containerConfig.loadFromString(json.toString());
 
     String content = parseBasicGadget("dummy");
 
