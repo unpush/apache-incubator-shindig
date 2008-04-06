@@ -314,12 +314,12 @@ class ParsedFeature {
       libraries.put(ctx, ctxLibs);
     }
 
-    List<JsLibrary> syndLibs = ctxLibs.get(synd);
-    if (syndLibs == null) {
-      syndLibs = new LinkedList<JsLibrary>();
-      ctxLibs.put(synd, syndLibs);
+    List<JsLibrary> containerLibs = ctxLibs.get(synd);
+    if (containerLibs == null) {
+      containerLibs = new LinkedList<JsLibrary>();
+      ctxLibs.put(synd, containerLibs);
     }
 
-    syndLibs.add(library);
+    containerLibs.add(library);
   }
 }
