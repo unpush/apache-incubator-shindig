@@ -535,7 +535,7 @@ gadgets.IfrGadget.prototype.getUserPrefsDialogId = function() {
 gadgets.IfrGadget.prototype.getIframeUrl = function() {
   return this.serverBase_ + 'ifr?' +
       'url=' + encodeURIComponent(this.specUrl) +
-      '&synd=' + this.SYND +
+      '&container=' + this.SYND +
       '&mid=' +  this.id +
       '&nocache=' + gadgets.container.nocache_ +
       '&country=' + gadgets.container.country_ +
