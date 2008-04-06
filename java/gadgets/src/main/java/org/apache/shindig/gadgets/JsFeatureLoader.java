@@ -243,7 +243,7 @@ public class JsFeatureLoader {
   private void processContext(ParsedFeature feature, Element context,
                               RenderingContext renderingContext)
       throws GadgetException {
-    String syndicator = XmlUtil.getAttribute(context, "synd",
+    String container = XmlUtil.getAttribute(context, "synd",
         ContainerConfig.DEFAULT_CONTAINER);
     NodeList libraries = context.getElementsByTagName("script");
     for (int i = 0, j = libraries.getLength(); i < j; ++i) {
@@ -277,7 +277,7 @@ public class JsFeatureLoader {
       }
       JsLibrary library = JsLibrary.create(
           type, content, feature.name, inlineOk ? fetcher : null);
-      for (String synd : syndicator.split(",")) {
+      for (String synd : container.split(",")) {
         feature.addLibrary(renderingContext, synd.trim(), library);
       }
     }
