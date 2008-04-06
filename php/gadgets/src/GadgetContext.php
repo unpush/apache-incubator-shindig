@@ -53,12 +53,12 @@ class GadgetContext {
 		$this->setUrl($this->getUrlParam());
 		$this->setModuleId($this->getModuleIdParam());
 		$this->setView($this->getViewParam());
-		$this->setSyndicator($this->getSyndicatorParam());
+		$this->setContainer($this->getContainerParam());
 		//NOTE All classes are initialized when called (aka lazy loading) because we don't 
 		//need all of them in every situation
 	}
 	
-	private function getSyndicatorParam()
+	private function getContainerParam()
 	{
 		$synd = 'default';
 		if (!empty($_GET['synd'])) {
@@ -175,21 +175,21 @@ class GadgetContext {
 		return new Locale($language, $country);
 	}
 	
-	private function instanceSyndicatorConfig()
+	private function instanceContainerConfig()
 	{
 		global $config;
 		return new ContainerConfig($config['syndicator_path']);
 	}
 	
-	public function getSyndicator()
+	public function getContainer()
 	{
 		return $this->syndicator;
 	}
 	
-	public function getSyndicatorConfig()
+	public function getContainerConfig()
 	{
 		if ($this->syndicatorConfig == null) {
-			$this->syndicatorConfig = $this->instanceSyndicatorConfig();
+			$this->syndicatorConfig = $this->instanceContainerConfig();
 		}
 		return $this->syndicatorConfig;
 	}
@@ -241,12 +241,12 @@ class GadgetContext {
 		return $this->view;
 	}
 	
-	public function setSyndicator($syndicator)
+	public function setContainer($syndicator)
 	{
 		$this->syndicator = $syndicator;
 	}
 	
-	public function setSyndicatorConfig($syndicatorConfig)
+	public function setContainerConfig($syndicatorConfig)
 	{
 		$this->syndicatorConfig = $syndicatorConfig;
 	}
