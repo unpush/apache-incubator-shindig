@@ -68,8 +68,8 @@ public class ContainerConfigTest extends TestCase {
   public void testBasic() throws Exception {
     // check to make sure that the default config was processed correctly.
     assertEquals(1, config.getContainers().size());
-    for (String synd : config.getContainers()) {
-      assertEquals(DEFAULT_CONTAINER, synd);
+    for (String container : config.getContainers()) {
+      assertEquals(DEFAULT_CONTAINER, container);
     }
 
     String value = config.get(DEFAULT_CONTAINER, TOP_LEVEL_NAME);
