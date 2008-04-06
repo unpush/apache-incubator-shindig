@@ -119,12 +119,12 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
 }
 
 class SyndContext extends GadgetContext {
-  private final String syndicator;
+  private final String container;
   @Override
   public String getContainer() {
-    return syndicator;
+    return container;
   }
-  public SyndContext(String syndicator) {
-    this.syndicator = syndicator;
+  public SyndContext(String container) {
+    this.container = container;
   }
 }
