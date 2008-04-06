@@ -40,9 +40,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Represents per-syndicator configuration for the container.
+ * Represents a container configuration.
  *
- * See config/default-syndicator.js for an example configuration.
+ * See config/container.js for an example configuration.
  *
  * We use a cascading model, so you only have to specify attributes in
  * your config that you actually want to change.
