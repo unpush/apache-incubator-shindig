@@ -157,13 +157,13 @@ public class HttpGadgetContext extends GadgetContext {
     return Boolean.TRUE;
   }
 
-  private final String syndicator;
+  private final String container;
   @Override
   public String getContainer() {
-    if (syndicator == null) {
+    if (container == null) {
       return super.getContainer();
     }
-    return syndicator;
+    return container;
   }
 
   /**
@@ -251,7 +251,7 @@ public class HttpGadgetContext extends GadgetContext {
     locale = getLocale(request);
     renderingContext = getRenderingContext(request);
     ignoreCache = getIgnoreCache(request);
-    syndicator = getContainer(request);
+    container = getContainer(request);
     debug = getDebug(request);
     view = getView(request);
     userPrefs = getUserPrefs(request);
