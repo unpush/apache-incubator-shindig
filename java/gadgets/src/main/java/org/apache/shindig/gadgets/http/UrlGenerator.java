@@ -48,7 +48,7 @@ public class UrlGenerator {
   private final String jsPrefix;
   private final String iframePrefix;
   private final String jsChecksum;
-  private final ContainerConfig syndicatorConfig;
+  private final ContainerConfig containerConfig;
   private final static Pattern ALLOWED_FEATURE_NAME
       = Pattern.compile("[0-9a-zA-Z\\.\\-]+");
 
@@ -100,7 +100,7 @@ public class UrlGenerator {
     GadgetSpec spec = gadget.getSpec();
     try {
       String url = context.getUrl().toString();
-      View view = HttpUtil.getView(gadget, syndicatorConfig);
+      View view = HttpUtil.getView(gadget, containerConfig);
       View.ContentType type;
       if (view == null) {
         type = View.ContentType.HTML;
@@ -158,10 +158,10 @@ public class UrlGenerator {
   public UrlGenerator(@Named("urls.iframe.prefix") String iframePrefix,
                       @Named("urls.js.prefix") String jsPrefix,
                       GadgetFeatureRegistry registry,
-                      ContainerConfig syndicatorConfig) {
+                      ContainerConfig containerConfig) {
     this.iframePrefix = iframePrefix;
     this.jsPrefix = jsPrefix;
-    this.syndicatorConfig = syndicatorConfig;
+    this.containerConfig = containerConfig;
 
     StringBuilder jsBuf = new StringBuilder();
     for (Map.Entry<String, GadgetFeatureRegistry.Entry> entry :
