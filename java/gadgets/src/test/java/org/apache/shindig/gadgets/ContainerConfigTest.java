@@ -20,7 +20,7 @@
 package org.apache.shindig.gadgets;
 
 import static org.apache.shindig.gadgets.ContainerConfig.DEFAULT_SYNDICATOR;
-import static org.apache.shindig.gadgets.ContainerConfig.SYNDICATOR_KEY;
+import static org.apache.shindig.gadgets.ContainerConfig.CONTAINER_KEY;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,7 +52,7 @@ public class ContainerConfigTest extends TestCase {
     config = new ContainerConfig(null);
     // We use a JSON Object here to guarantee that we're well formed up front.
     JSONObject json = new JSONObject();
-    json.put(SYNDICATOR_KEY, new String[]{DEFAULT_SYNDICATOR});
+    json.put(CONTAINER_KEY, new String[]{DEFAULT_SYNDICATOR});
     json.put(TOP_LEVEL_NAME, TOP_LEVEL_VALUE);
     json.put(ARRAY_NAME, ARRAY_VALUE);
 
@@ -84,7 +84,7 @@ public class ContainerConfigTest extends TestCase {
 
   public void testCascade() throws Exception {
     JSONObject json = new JSONObject();
-    json.put(SYNDICATOR_KEY, new String[]{CHILD_SYNDICATOR});
+    json.put(CONTAINER_KEY, new String[]{CHILD_SYNDICATOR});
     json.put(ARRAY_NAME, ARRAY_ALT_VALUE);
 
     // small nested data.

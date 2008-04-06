@@ -50,7 +50,7 @@ import java.util.logging.Logger;
 public class ContainerConfig {
   private final Map<String, JSONObject> config;
   public static final String DEFAULT_SYNDICATOR = "default";
-  public static final String SYNDICATOR_KEY = "gadgets.container";
+  public static final String CONTAINER_KEY = "gadgets.container";
   private static final Logger logger
       = Logger.getLogger("org.apache.shindig.gadgets");
 
@@ -241,7 +241,7 @@ public class ContainerConfig {
   public void loadFromString(String json) throws GadgetException {
     try {
       JSONObject contents = new JSONObject(json);
-      JSONArray syndicators = contents.getJSONArray(SYNDICATOR_KEY);
+      JSONArray syndicators = contents.getJSONArray(CONTAINER_KEY);
       JSONObject defaultSynd = config.get(DEFAULT_SYNDICATOR);
       if (defaultSynd == null) {
         if (DEFAULT_SYNDICATOR.equals(syndicators.get(0))) {
