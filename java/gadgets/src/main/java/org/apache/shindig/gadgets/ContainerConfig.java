@@ -72,8 +72,8 @@ public class ContainerConfig {
    * @return A configuration parameter as a JSON object or null if not set or
    *     can't be interpreted as JSON.
    */
-  public Object getJson(String syndicator, String parameter) {
-    JSONObject data = config.get(syndicator);
+  public Object getJson(String container, String parameter) {
+    JSONObject data = config.get(container);
     if (data == null) {
       return null;
     }
@@ -105,8 +105,8 @@ public class ContainerConfig {
    * @param parameter
    * @return A configuration parameter as a string, or null if not set.
    */
-  public String get(String syndicator, String parameter) {
-    Object data = getJson(syndicator, parameter);
+  public String get(String container, String parameter) {
+    Object data = getJson(container, parameter);
     return data == null ? null : data.toString();
   }
 
@@ -116,8 +116,8 @@ public class ContainerConfig {
    * @return A configuration parameter as a JSON object or null if not set or
    *     can't be interpreted as JSON.
    */
-  public JSONObject getJsonObject(String syndicator, String parameter) {
-    Object data = getJson(syndicator, parameter);
+  public JSONObject getJsonObject(String container, String parameter) {
+    Object data = getJson(container, parameter);
     if (data instanceof JSONObject) {
       return (JSONObject)data;
     }
@@ -130,8 +130,8 @@ public class ContainerConfig {
    * @return A configuration parameter as a JSON object or null if not set or
    *     can't be interpreted as JSON.
    */
-  public JSONArray getJsonArray(String syndicator, String parameter) {
-    Object data = getJson(syndicator, parameter);
+  public JSONArray getJsonArray(String container, String parameter) {
+    Object data = getJson(container, parameter);
     if (data instanceof JSONArray) {
       return (JSONArray)data;
     }
@@ -241,10 +241,10 @@ public class ContainerConfig {
   public void loadFromString(String json) throws GadgetException {
     try {
       JSONObject contents = new JSONObject(json);
-      JSONArray syndicators = contents.getJSONArray(CONTAINER_KEY);
+      JSONArray containers = contents.getJSONArray(CONTAINER_KEY);
       JSONObject defaultSynd = config.get(DEFAULT_CONTAINER);
       if (defaultSynd == null) {
-        if (DEFAULT_CONTAINER.equals(syndicators.get(0))) {
+        if (DEFAULT_CONTAINER.equals(containers.get(0))) {
           defaultSynd = contents;
           config.put(DEFAULT_CONTAINER, contents);
         } else {
@@ -252,11 +252,11 @@ public class ContainerConfig {
                                     "No default config registered");
         }
       }
-      for (int i = 0, j = syndicators.length(); i < j; ++i) {
+      for (int i = 0, j = containers.length(); i < j; ++i) {
         // Copy the default object and produce a new one.
-        String syndicator = syndicators.getString(i);
-        if (!DEFAULT_CONTAINER.equals(syndicator)) {
-          config.put(syndicator, mergeObjects(defaultSynd, contents));
+        String container = containers.getString(i);
+        if (!DEFAULT_CONTAINER.equals(container)) {
+          config.put(container, mergeObjects(defaultSynd, contents));
         }
       }
     } catch (JSONException e) {
@@ -296,11 +296,11 @@ public class ContainerConfig {
    * Creates a new, empty configuration.
    */
   @Inject
-  public ContainerConfig(@Named("containers.default") String syndicators)
+  public ContainerConfig(@Named("containers.default") String containers)
       throws GadgetException {
     config = new HashMap<String, JSONObject>();
-    if (syndicators != null) {
-      loadContainers(syndicators);
+    if (containers != null) {
+      loadContainers(containers);
     }
   }
 }
