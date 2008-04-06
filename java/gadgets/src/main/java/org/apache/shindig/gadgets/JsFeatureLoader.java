@@ -277,8 +277,8 @@ public class JsFeatureLoader {
       }
       JsLibrary library = JsLibrary.create(
           type, content, feature.name, inlineOk ? fetcher : null);
-      for (String synd : container.split(",")) {
-        feature.addLibrary(renderingContext, synd.trim(), library);
+      for (String cont : container.split(",")) {
+        feature.addLibrary(renderingContext, cont.trim(), library);
       }
     }
   }
@@ -307,17 +307,17 @@ class ParsedFeature {
     deps = new LinkedList<String>();
   }
 
-  public void addLibrary(RenderingContext ctx, String synd, JsLibrary library) {
+  public void addLibrary(RenderingContext ctx, String cont, JsLibrary library) {
     Map<String, List<JsLibrary>> ctxLibs = libraries.get(ctx);
     if (ctxLibs == null) {
       ctxLibs = new HashMap<String, List<JsLibrary>>();
       libraries.put(ctx, ctxLibs);
     }
 
-    List<JsLibrary> containerLibs = ctxLibs.get(synd);
+    List<JsLibrary> containerLibs = ctxLibs.get(cont);
     if (containerLibs == null) {
       containerLibs = new LinkedList<JsLibrary>();
-      ctxLibs.put(synd, containerLibs);
+      ctxLibs.put(cont, containerLibs);
     }
 
     containerLibs.add(library);
