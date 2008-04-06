@@ -61,10 +61,10 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
   public void testMultiContainers() throws Exception {
     String xml = "<feature>" +
                  "  <name>" + FEATURE_NAME + "</name>" +
-                 "  <gadget synd=\"" + CONT_A + "\">" +
+                 "  <gadget container=\"" + CONT_A + "\">" +
                  "    <script>" + DEF_JS_CONTENT + "</script>" +
                  "  </gadget>" +
-                 "  <gadget synd=\"" + CONT_B + "\">" +
+                 "  <gadget container=\"" + CONT_B + "\">" +
                  "    <script>" + ALT_JS_CONTENT + "</script>" +
                  "  </gadget>" +
                  "</feature>";
