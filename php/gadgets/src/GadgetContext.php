@@ -39,7 +39,7 @@ class GadgetContext {
 	private $blacklist = null;
 	private $ignoreCache = null;
 	private $forcedJsLibs = null;
-	private $syndicatorConfig = null; 
+	private $containerConfig = null; 
 	private $container = null;
 
 	public function __construct($renderingContext)
@@ -188,10 +188,10 @@ class GadgetContext {
 	
 	public function getContainerConfig()
 	{
-		if ($this->syndicatorConfig == null) {
-			$this->syndicatorConfig = $this->instanceContainerConfig();
+		if ($this->containerConfig == null) {
+			$this->containerConfig = $this->instanceContainerConfig();
 		}
-		return $this->syndicatorConfig;
+		return $this->containerConfig;
 	}
 
 	public function getCache()
@@ -246,9 +246,9 @@ class GadgetContext {
 		$this->container = $container;
 	}
 	
-	public function setContainerConfig($syndicatorConfig)
+	public function setContainerConfig($containerConfig)
 	{
-		$this->syndicatorConfig = $syndicatorConfig;
+		$this->containerConfig = $containerConfig;
 	}
 
 	public function setBlacklist($blacklist)

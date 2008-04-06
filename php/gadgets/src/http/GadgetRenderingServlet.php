@@ -276,9 +276,9 @@ class GadgetRenderingServlet extends HttpServlet {
 	private function appendJsConfig($context, $gadget)
 	{
 		$container = $context->getContainer();
-		$syndicatorConfig = $context->getContainerConfig();
+		$containerConfig = $context->getContainerConfig();
 		$gadgetConfig = array();
-		$featureConfig = $syndicatorConfig->getConfig($container, 'gadgets.features');
+		$featureConfig = $containerConfig->getConfig($container, 'gadgets.features');
 		foreach ($gadget->getJsLibraries() as $library) {
 			$feature = $library->getFeatureName();
 			if (!isset($gadgetConfig[$feature]) && !empty($featureConfig[$feature])) {
