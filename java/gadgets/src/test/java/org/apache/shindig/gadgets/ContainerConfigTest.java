@@ -19,7 +19,7 @@
 
 package org.apache.shindig.gadgets;
 
-import static org.apache.shindig.gadgets.ContainerConfig.DEFAULT_SYNDICATOR;
+import static org.apache.shindig.gadgets.ContainerConfig.DEFAULT_CONTAINER;
 import static org.apache.shindig.gadgets.ContainerConfig.CONTAINER_KEY;
 
 import org.json.JSONArray;
@@ -52,7 +52,7 @@ public class ContainerConfigTest extends TestCase {
     config = new ContainerConfig(null);
     // We use a JSON Object here to guarantee that we're well formed up front.
     JSONObject json = new JSONObject();
-    json.put(CONTAINER_KEY, new String[]{DEFAULT_SYNDICATOR});
+    json.put(CONTAINER_KEY, new String[]{DEFAULT_CONTAINER});
     json.put(TOP_LEVEL_NAME, TOP_LEVEL_VALUE);
     json.put(ARRAY_NAME, ARRAY_VALUE);
 
@@ -69,13 +69,13 @@ public class ContainerConfigTest extends TestCase {
     // check to make sure that the default config was processed correctly.
     assertEquals(1, config.getContainers().size());
     for (String synd : config.getContainers()) {
-      assertEquals(DEFAULT_SYNDICATOR, synd);
+      assertEquals(DEFAULT_CONTAINER, synd);
     }
 
-    String value = config.get(DEFAULT_SYNDICATOR, TOP_LEVEL_NAME);
+    String value = config.get(DEFAULT_CONTAINER, TOP_LEVEL_NAME);
     assertEquals(TOP_LEVEL_VALUE, value);
 
-    JSONObject nested = config.getJsonObject(DEFAULT_SYNDICATOR, NESTED_KEY);
+    JSONObject nested = config.getJsonObject(DEFAULT_CONTAINER, NESTED_KEY);
 
     String nestedValue = nested.getString(NESTED_NAME);
 
@@ -107,7 +107,7 @@ public class ContainerConfigTest extends TestCase {
 
     // Verify that the parent value wasn't overwritten as well.
 
-    JSONArray defaultArrayTest = config.getJsonArray(DEFAULT_SYNDICATOR,
+    JSONArray defaultArrayTest = config.getJsonArray(DEFAULT_CONTAINER,
                                                       ARRAY_NAME);
     JSONArray defaultArray = new JSONArray(ARRAY_VALUE);
     assertEquals(defaultArrayTest.toString(), defaultArray.toString());
@@ -115,7 +115,7 @@ public class ContainerConfigTest extends TestCase {
 
   public void testPathQuery() throws Exception {
     String path = NESTED_KEY + "/" + NESTED_NAME;
-    String data = config.get(DEFAULT_SYNDICATOR, path);
+    String data = config.get(DEFAULT_CONTAINER, path);
     assertEquals(NESTED_VALUE, data);
   }
 }

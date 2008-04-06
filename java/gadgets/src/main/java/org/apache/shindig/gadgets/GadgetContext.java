@@ -66,7 +66,7 @@ public class GadgetContext {
    * @return The container of the current request.
    */
   public String getContainer() {
-    return ContainerConfig.DEFAULT_SYNDICATOR;
+    return ContainerConfig.DEFAULT_CONTAINER;
   }
 
   /**

@@ -424,7 +424,7 @@ public class GadgetRenderingTask {
   private boolean validateParent() {
     String syndicator = request.getParameter("synd");
     if (syndicator == null) {
-      syndicator = ContainerConfig.DEFAULT_SYNDICATOR;
+      syndicator = ContainerConfig.DEFAULT_CONTAINER;
     }
 
     String parent = request.getParameter("parent");
