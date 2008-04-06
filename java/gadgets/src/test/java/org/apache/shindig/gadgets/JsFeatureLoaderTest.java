@@ -32,8 +32,8 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
   private static final String FEATURE_NAME = "test";
   private static final String DEF_JS_CONTENT = "var hello = 'world';";
   private static final String ALT_JS_CONTENT = "function test(){while(true);}";
-  private static final String SYND_A = "test";
-  private static final String SYND_B = "wuwowowaefdf";
+  private static final String CONT_A = "test";
+  private static final String CONT_B = "wuwowowaefdf";
   private static final URI JS_URL = URI.create("http://example.org/feature.js");
 
   @Override
@@ -61,19 +61,19 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
   public void testMultiContainers() throws Exception {
     String xml = "<feature>" +
                  "  <name>" + FEATURE_NAME + "</name>" +
-                 "  <gadget synd=\"" + SYND_A + "\">" +
+                 "  <gadget synd=\"" + CONT_A + "\">" +
                  "    <script>" + DEF_JS_CONTENT + "</script>" +
                  "  </gadget>" +
-                 "  <gadget synd=\"" + SYND_B + "\">" +
+                 "  <gadget synd=\"" + CONT_B + "\">" +
                  "    <script>" + ALT_JS_CONTENT + "</script>" +
                  "  </gadget>" +
                  "</feature>";
     GadgetFeatureRegistry.Entry entry = loader.loadFeature(registry, xml);
     GadgetFeature feature = entry.getFeature().create();
     List<JsLibrary> libs;
-    libs = feature.getJsLibraries(new SyndContext(SYND_A));
+    libs = feature.getJsLibraries(new ContainerContext(CONT_A));
     assertEquals(DEF_JS_CONTENT, libs.get(0).getContent());
-    libs = feature.getJsLibraries(new SyndContext(SYND_B));
+    libs = feature.getJsLibraries(new ContainerContext(CONT_B));
     assertEquals(ALT_JS_CONTENT, libs.get(0).getContent());
   }
 
@@ -118,13 +118,13 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
   }
 }
 
-class SyndContext extends GadgetContext {
+class ContainerContext extends GadgetContext {
   private final String container;
   @Override
   public String getContainer() {
     return container;
   }
-  public SyndContext(String container) {
+  public ContainerContext(String container) {
     this.container = container;
   }
 }
