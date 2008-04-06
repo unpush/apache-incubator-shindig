@@ -40,7 +40,7 @@ class GadgetContext {
 	private $ignoreCache = null;
 	private $forcedJsLibs = null;
 	private $syndicatorConfig = null; 
-	private $syndicator = null;
+	private $container = null;
 
 	public function __construct($renderingContext)
 	{
@@ -188,7 +188,7 @@ class GadgetContext {
 	
 	public function getContainer()
 	{
-		return $this->syndicator;
+		return $this->container;
 	}
 	
 	public function getContainerConfig()
@@ -246,9 +246,9 @@ class GadgetContext {
 		return $this->view;
 	}
 	
-	public function setContainer($syndicator)
+	public function setContainer($container)
 	{
-		$this->syndicator = $syndicator;
+		$this->container = $container;
 	}
 	
 	public function setContainerConfig($syndicatorConfig)

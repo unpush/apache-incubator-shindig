@@ -40,21 +40,21 @@ class ContainerConfig {
 		if (! isset($config[$this->container_key][0])) {
 			throw new Exception("No gadgets.container value set");
 		}
-		$syndicator = $config[$this->container_key][0];
-		$this->config[$syndicator] = array();
+		$container = $config[$this->container_key][0];
+		$this->config[$container] = array();
 		foreach ($config as $key => $val) {
-			$this->config[$syndicator][$key] = $val;
+			$this->config[$container][$key] = $val;
 		}
 	}
 
-	public function getConfig($syndicator, $name)
+	public function getConfig($container, $name)
 	{
 		$config = array();
-		if (isset($this->config[$syndicator]) && isset($this->config[$syndicator][$name])) {
-			$config = $this->config[$syndicator][$name];
+		if (isset($this->config[$container]) && isset($this->config[$container][$name])) {
+			$config = $this->config[$container][$name];
 		}
-		if ($syndicator != $this->default_syndicator && isset($this->config[$syndicator][$name])) {
-			$config = $this->mergeConfig($this->config[$syndicator][$name], $config);
+		if ($container != $this->default_container && isset($this->config[$container][$name])) {
+			$config = $this->mergeConfig($this->config[$container][$name], $config);
 		}
 		return $config;
 	}
