@@ -18,7 +18,7 @@
  */
 
 // Default syndicator configuration. Rather than replacing this
-// file, you should create your own syndicator.js file and
+// file, you should create your own container.js file and
 // load it directly by modifying the value of web.xml.
 // All configurations will automatically inherit values from this
 // config, so you only need to provide configuration for items
@@ -31,7 +31,7 @@
 // NOTE: Please _don't_ leave trailing commas because the php json parser
 // errors out on this.
 
-// Syndicator must be an array; this allows multiple syndicators
+// Container must be an array; this allows multiple containers
 // to share configuration.
 {"gadgets.container" : ["default"],
 
