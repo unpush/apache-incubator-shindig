@@ -242,10 +242,10 @@ public class ContainerConfig {
     try {
       JSONObject contents = new JSONObject(json);
       JSONArray containers = contents.getJSONArray(CONTAINER_KEY);
-      JSONObject defaultSynd = config.get(DEFAULT_CONTAINER);
-      if (defaultSynd == null) {
+      JSONObject defaultContainer = config.get(DEFAULT_CONTAINER);
+      if (defaultContainer == null) {
         if (DEFAULT_CONTAINER.equals(containers.get(0))) {
-          defaultSynd = contents;
+          defaultContainer = contents;
           config.put(DEFAULT_CONTAINER, contents);
         } else {
           throw new GadgetException(GadgetException.Code.INVALID_CONFIG,
@@ -256,7 +256,7 @@ public class ContainerConfig {
         // Copy the default object and produce a new one.
         String container = containers.getString(i);
         if (!DEFAULT_CONTAINER.equals(container)) {
-          config.put(container, mergeObjects(defaultSynd, contents));
+          config.put(container, mergeObjects(defaultContainer, contents));
         }
       }
     } catch (JSONException e) {
