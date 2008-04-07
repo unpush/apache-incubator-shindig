@@ -178,7 +178,7 @@ class GadgetContext {
 	private function instanceSyndicatorConfig()
 	{
 		global $config;
-		return new SyndicatorConfig($config['syndicator_path']);
+		return new ContainerConfig($config['syndicator_path']);
 	}
 	
 	public function getSyndicator()
