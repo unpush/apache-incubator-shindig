@@ -25,7 +25,7 @@ import static org.easymock.EasyMock.isA;
 import org.apache.shindig.gadgets.GadgetContext;
 import org.apache.shindig.gadgets.RemoteContent;
 import org.apache.shindig.gadgets.RemoteContentRequest;
-import org.apache.shindig.gadgets.SyndicatorConfig;
+import org.apache.shindig.gadgets.ContainerConfig;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 
 import org.json.JSONArray;
@@ -116,7 +116,7 @@ public class GadgetRenderingTaskTest extends HttpTestFixture {
   public void testViewAliases() throws Exception {
     JSONObject json = new JSONObject();
     json.put("gadgets.syndicator",
-             new JSONArray().put(SyndicatorConfig.DEFAULT_SYNDICATOR));
+             new JSONArray().put(ContainerConfig.DEFAULT_SYNDICATOR));
     JSONArray aliases = new JSONArray().put("ALIAS");
     JSONObject dummy = new JSONObject().put("aliases", aliases);
     JSONObject views = new JSONObject().put("dummy", dummy);

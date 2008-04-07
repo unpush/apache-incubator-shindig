@@ -19,8 +19,8 @@
 
 package org.apache.shindig.gadgets;
 
-import static org.apache.shindig.gadgets.SyndicatorConfig.DEFAULT_SYNDICATOR;
-import static org.apache.shindig.gadgets.SyndicatorConfig.SYNDICATOR_KEY;
+import static org.apache.shindig.gadgets.ContainerConfig.DEFAULT_SYNDICATOR;
+import static org.apache.shindig.gadgets.ContainerConfig.SYNDICATOR_KEY;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,8 +30,8 @@ import junit.framework.TestCase;
 /**
  *
  */
-public class SyndicatorConfigTest extends TestCase {
-  private SyndicatorConfig config;
+public class ContainerConfigTest extends TestCase {
+  private ContainerConfig config;
 
   private static final String TOP_LEVEL_NAME = "Top level name";
   private static final String TOP_LEVEL_VALUE = "Top level value";
@@ -49,7 +49,7 @@ public class SyndicatorConfigTest extends TestCase {
 
   @Override
   public void setUp() throws Exception {
-    config = new SyndicatorConfig(null);
+    config = new ContainerConfig(null);
     // We use a JSON Object here to guarantee that we're well formed up front.
     JSONObject json = new JSONObject();
     json.put(SYNDICATOR_KEY, new String[]{DEFAULT_SYNDICATOR});

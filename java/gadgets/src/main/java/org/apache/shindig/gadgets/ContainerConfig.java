@@ -47,7 +47,7 @@ import java.util.logging.Logger;
  * We use a cascading model, so you only have to specify attributes in
  * your config that you actually want to change.
  */
-public class SyndicatorConfig {
+public class ContainerConfig {
   private final Map<String, JSONObject> config;
   public static final String DEFAULT_SYNDICATOR = "default";
   public static final String SYNDICATOR_KEY = "gadgets.syndicator";
@@ -296,7 +296,7 @@ public class SyndicatorConfig {
    * Creates a new, empty configuration.
    */
   @Inject
-  public SyndicatorConfig(@Named("syndicators.default") String syndicators)
+  public ContainerConfig(@Named("syndicators.default") String syndicators)
       throws GadgetException {
     config = new HashMap<String, JSONObject>();
     if (syndicators != null) {

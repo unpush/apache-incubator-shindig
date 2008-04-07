@@ -24,7 +24,7 @@ import org.apache.shindig.gadgets.GadgetFeature;
 import org.apache.shindig.gadgets.GadgetFeatureFactory;
 import org.apache.shindig.gadgets.GadgetFeatureRegistry;
 import org.apache.shindig.gadgets.JsLibrary;
-import org.apache.shindig.gadgets.SyndicatorConfig;
+import org.apache.shindig.gadgets.ContainerConfig;
 import org.apache.shindig.gadgets.UserPrefs;
 import org.apache.shindig.gadgets.spec.GadgetSpec;
 import org.apache.shindig.gadgets.spec.UserPref;
@@ -48,7 +48,7 @@ public class UrlGenerator {
   private final String jsPrefix;
   private final String iframePrefix;
   private final String jsChecksum;
-  private final SyndicatorConfig syndicatorConfig;
+  private final ContainerConfig syndicatorConfig;
   private final static Pattern ALLOWED_FEATURE_NAME
       = Pattern.compile("[0-9a-zA-Z\\.\\-]+");
 
@@ -158,7 +158,7 @@ public class UrlGenerator {
   public UrlGenerator(@Named("urls.iframe.prefix") String iframePrefix,
                       @Named("urls.js.prefix") String jsPrefix,
                       GadgetFeatureRegistry registry,
-                      SyndicatorConfig syndicatorConfig) {
+                      ContainerConfig syndicatorConfig) {
     this.iframePrefix = iframePrefix;
     this.jsPrefix = jsPrefix;
     this.syndicatorConfig = syndicatorConfig;
