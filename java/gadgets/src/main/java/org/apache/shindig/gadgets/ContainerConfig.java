@@ -296,11 +296,11 @@ public class ContainerConfig {
    * Creates a new, empty configuration.
    */
   @Inject
-  public ContainerConfig(@Named("containers.default") String syndicators)
+  public ContainerConfig(@Named("containers.default") String containers)
       throws GadgetException {
     config = new HashMap<String, JSONObject>();
-    if (syndicators != null) {
-      loadContainers(syndicators);
+    if (containers != null) {
+      loadContainers(containers);
     }
   }
 }
