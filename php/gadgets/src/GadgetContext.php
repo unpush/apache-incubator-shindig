@@ -60,18 +60,18 @@ class GadgetContext {
 	
 	private function getContainerParam()
 	{
-		$synd = 'default';
+		$container = 'default';
 		if (!empty($_GET['container'])) {
-			$synd = $_GET['container'];
+			$container = $_GET['container'];
       // The paramater used to be called 'synd' FIXME: schedule removal
 		} elseif (!empty($_GET['synd'])) {
-			$synd = $_GET['synd'];
+			$container = $_GET['synd'];
 		} elseif (!empty($_POST['container'])) {
-			$synd = $_POST['container'];
+			$container = $_POST['container'];
       // The paramater used to be called 'synd' FIXME: schedule removal
-			$synd = $_POST['synd'];
+			$container = $_POST['synd'];
 		}
-		return $synd;
+		return $container;
 	}
 
 	private function getIgnoreCacheParam()
