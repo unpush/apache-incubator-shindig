@@ -61,9 +61,14 @@ class GadgetContext {
 	private function getSyndicatorParam()
 	{
 		$synd = 'default';
-		if (!empty($_GET['synd'])) {
+		if (!empty($_GET['container'])) {
+			$synd = $_GET['container'];
+      // The paramater used to be called 'synd' FIXME: schedule removal
+		} elseif (!empty($_GET['synd'])) {
 			$synd = $_GET['synd'];
-		} elseif (!empty($_POST['synd'])) {
+		} elseif (!empty($_POST['container'])) {
+			$synd = $_POST['container'];
+      // The paramater used to be called 'synd' FIXME: schedule removal
 			$synd = $_POST['synd'];
 		}
 		return $synd;
