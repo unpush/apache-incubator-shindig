@@ -49,7 +49,7 @@ import java.util.logging.Logger;
  */
 public class ContainerConfig {
   private final Map<String, JSONObject> config;
-  public static final String DEFAULT_SYNDICATOR = "default";
+  public static final String DEFAULT_CONTAINER = "default";
   public static final String CONTAINER_KEY = "gadgets.container";
   private static final Logger logger
       = Logger.getLogger("org.apache.shindig.gadgets");
@@ -242,11 +242,11 @@ public class ContainerConfig {
     try {
       JSONObject contents = new JSONObject(json);
       JSONArray syndicators = contents.getJSONArray(CONTAINER_KEY);
-      JSONObject defaultSynd = config.get(DEFAULT_SYNDICATOR);
+      JSONObject defaultSynd = config.get(DEFAULT_CONTAINER);
       if (defaultSynd == null) {
-        if (DEFAULT_SYNDICATOR.equals(syndicators.get(0))) {
+        if (DEFAULT_CONTAINER.equals(syndicators.get(0))) {
           defaultSynd = contents;
-          config.put(DEFAULT_SYNDICATOR, contents);
+          config.put(DEFAULT_CONTAINER, contents);
         } else {
           throw new GadgetException(GadgetException.Code.INVALID_CONFIG,
                                     "No default config registered");
@@ -255,7 +255,7 @@ public class ContainerConfig {
       for (int i = 0, j = syndicators.length(); i < j; ++i) {
         // Copy the default object and produce a new one.
         String syndicator = syndicators.getString(i);
-        if (!DEFAULT_SYNDICATOR.equals(syndicator)) {
+        if (!DEFAULT_CONTAINER.equals(syndicator)) {
           config.put(syndicator, mergeObjects(defaultSynd, contents));
         }
       }

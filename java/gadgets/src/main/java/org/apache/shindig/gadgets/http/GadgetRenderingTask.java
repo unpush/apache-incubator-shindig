@@ -427,7 +427,7 @@ public class GadgetRenderingTask {
       // The paramater used to be called 'synd' FIXME: schedule removal
       syndicator = request.getParameter("synd");
       if (syndicator == null) {
-        syndicator = ContainerConfig.DEFAULT_SYNDICATOR;
+        syndicator = ContainerConfig.DEFAULT_CONTAINER;
       }
     }
 
