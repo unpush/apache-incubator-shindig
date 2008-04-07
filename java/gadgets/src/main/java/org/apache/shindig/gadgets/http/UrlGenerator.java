@@ -82,7 +82,7 @@ public class UrlGenerator {
       }
     }
     buf.append(".js?v=").append(jsChecksum)
-       .append("&synd=").append(context.getSyndicator())
+       .append("&synd=").append(context.getContainer())
        .append("&debug=").append(context.getDebug() ? "1" : "0");
     return buf.toString();
   }
@@ -125,7 +125,7 @@ public class UrlGenerator {
              .append("&");
           break;
       }
-      buf.append("synd=").append(context.getSyndicator());
+      buf.append("synd=").append(context.getContainer());
       if (context.getModuleId() != 0) {
         buf.append("&mid=").append(context.getModuleId());
       }

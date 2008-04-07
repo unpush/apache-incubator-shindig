@@ -84,7 +84,7 @@ public class HttpUtil {
    */
   public static JSONObject getJsConfig(ContainerConfig config,
       GadgetContext context, Set<String> features) {
-    JSONObject syndFeatures = config.getJsonObject(context.getSyndicator(),
+    JSONObject syndFeatures = config.getJsonObject(context.getContainer(),
                                                    "gadgets.features");
     if (syndFeatures != null) {
       String[] featArray = features.toArray(new String[features.size()]);
@@ -111,7 +111,7 @@ public class HttpUtil {
     GadgetSpec spec = gadget.getSpec();
     View view = spec.getView(viewName);
     if (view == null) {
-      JSONArray aliases = config.getJsonArray(context.getSyndicator(),
+      JSONArray aliases = config.getJsonArray(context.getContainer(),
           "gadgets.features/views/" + viewName + "/aliases");
       if (aliases != null) {
         try {

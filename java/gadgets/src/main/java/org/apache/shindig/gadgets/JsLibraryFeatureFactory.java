@@ -88,7 +88,7 @@ class JsLibraryFeature extends GadgetFeature {
       Map<String, List<JsLibrary>> contextLibs
           = libraries.get(context.getRenderingContext());
       if (contextLibs != null) {
-        libs = contextLibs.get(context.getSyndicator());
+        libs = contextLibs.get(context.getContainer());
         if (libs == null) {
           // Try default.
           libs = contextLibs.get(ContainerConfig.DEFAULT_SYNDICATOR);

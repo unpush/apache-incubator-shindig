@@ -57,7 +57,7 @@ public class ContainerConfig {
   /**
    * @return The set of all syndicators that are currently registered.
    */
-  public Set<String> getSyndicators() {
+  public Set<String> getContainers() {
     return Collections.unmodifiableSet(config.keySet());
   }
 
@@ -267,12 +267,12 @@ public class ContainerConfig {
   /**
    * Loads syndicators from the specified resource. Follows the same rules
    * as {@code JsFeatureLoader.loadFeatures} for locating resources.
-   * This call is not thread safe, so you should only call loadSyndicators()
+   * This call is not thread safe, so you should only call loadContainers()
    * from within the GadgetServerConfig.
    *
    * @param path
    */
-  public void loadSyndicators(String path) throws GadgetException {
+  public void loadContainers(String path) throws GadgetException {
     try {
       if (path.startsWith("res://")) {
         path = path.substring(6);
@@ -300,7 +300,7 @@ public class ContainerConfig {
       throws GadgetException {
     config = new HashMap<String, JSONObject>();
     if (syndicators != null) {
-      loadSyndicators(syndicators);
+      loadContainers(syndicators);
     }
   }
 }

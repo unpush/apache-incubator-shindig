@@ -98,9 +98,9 @@ public class JsonRpcGadgetContext extends GadgetContext {
 
   private final String syndicator;
   @Override
-  public String getSyndicator() {
+  public String getContainer() {
     if (syndicator == null) {
-      return super.getSyndicator();
+      return super.getContainer();
     }
     return syndicator;
   }
