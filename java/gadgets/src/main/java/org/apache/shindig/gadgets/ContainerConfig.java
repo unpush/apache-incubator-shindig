@@ -50,7 +50,7 @@ import java.util.logging.Logger;
 public class ContainerConfig {
   private final Map<String, JSONObject> config;
   public static final String DEFAULT_SYNDICATOR = "default";
-  public static final String SYNDICATOR_KEY = "gadgets.syndicator";
+  public static final String SYNDICATOR_KEY = "gadgets.container";
   private static final Logger logger
       = Logger.getLogger("org.apache.shindig.gadgets");
 

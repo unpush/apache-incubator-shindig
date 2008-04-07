@@ -115,7 +115,7 @@ public class GadgetRenderingTaskTest extends HttpTestFixture {
 
   public void testViewAliases() throws Exception {
     JSONObject json = new JSONObject();
-    json.put("gadgets.syndicator",
+    json.put("gadgets.container",
              new JSONArray().put(ContainerConfig.DEFAULT_SYNDICATOR));
     JSONArray aliases = new JSONArray().put("ALIAS");
     JSONObject dummy = new JSONObject().put("aliases", aliases);
