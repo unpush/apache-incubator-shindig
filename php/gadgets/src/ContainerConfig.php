@@ -7,12 +7,12 @@ class ContainerConfig {
 
 	public function __construct($defaultContainer)
 	{
-		if (! empty($defaultContainer)) {
-			$this->loadContainers($defaultContainer);
+		if (! empty($defaultSyndicator)) {
+			$this->loadContainers($defaultSyndicator);
 		}
 	}
 
-	private function loadContainers($containers)
+	private function loadContainers($syndicators)
 	{
 		if (! file_exists($containers) || ! is_dir($containers)) {
 			throw new Exception("Invalid syndicator path");
