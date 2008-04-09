@@ -63,12 +63,13 @@ class GadgetContext {
 		$container = 'default';
 		if (!empty($_GET['container'])) {
 			$container = $_GET['container'];
-      // The paramater used to be called 'synd' FIXME: schedule removal
 		} elseif (!empty($_GET['synd'])) {
+      // The parameter used to be called 'synd' FIXME: schedule removal
 			$container = $_GET['synd'];
 		} elseif (!empty($_POST['container'])) {
 			$container = $_POST['container'];
-      // The paramater used to be called 'synd' FIXME: schedule removal
+		} elseif (!empty($_POST['synd'])) {
+      // The parameter used to be called 'synd' FIXME: schedule removal
 			$container = $_POST['synd'];
 		}
 		return $container;

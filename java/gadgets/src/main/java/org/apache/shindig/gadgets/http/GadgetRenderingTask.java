@@ -98,7 +98,7 @@ public class GadgetRenderingTask {
 
     if (!validateParent()) {
       response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-          "Unsupported parent parameter. Check your syndicator code.");
+          "Unsupported parent parameter. Check your container code.");
       return;
     }
 
@@ -419,15 +419,15 @@ public class GadgetRenderingTask {
    * Validates that the parent parameter was acceptable.
    *
    * @return True if the parent parameter is valid for the current
-   *     syndicator.
+   *     container.
    */
   private boolean validateParent() {
-    String syndicator = request.getParameter("container");
-    if (syndicator == null) {
-      // The paramater used to be called 'synd' FIXME: schedule removal
-      syndicator = request.getParameter("synd");
-      if (syndicator == null) {
-        syndicator = ContainerConfig.DEFAULT_CONTAINER;
+    String container = request.getParameter("container");
+    if (container == null) {
+      // The parameter used to be called 'synd' FIXME: schedule removal
+      container = request.getParameter("synd");
+      if (container == null) {
+        container = ContainerConfig.DEFAULT_CONTAINER;
       }
     }
 
@@ -441,7 +441,7 @@ public class GadgetRenderingTask {
 
     try {
       JSONArray parents
-          = containerConfig.getJsonArray(syndicator, "gadgets.parent");
+          = containerConfig.getJsonArray(container, "gadgets.parent");
 
       if (parents == null) {
         return true;

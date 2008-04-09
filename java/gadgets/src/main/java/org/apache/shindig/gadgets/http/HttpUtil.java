@@ -77,7 +77,7 @@ public class HttpUtil {
   }
 
   /**
-   * Fetches js configuration for the given feature set & syndicator
+   * Fetches js configuration for the given feature set & container
    * @param config
    * @param context
    * @param features
@@ -98,7 +98,7 @@ public class HttpUtil {
   }
 
   /**
-   * Fetches the most appropriate view for the given gadget and syndicator
+   * Fetches the most appropriate view for the given gadget and container
    * configuration.
    *
    * @param gadget

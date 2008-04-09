@@ -168,12 +168,12 @@ public class HttpGadgetContext extends GadgetContext {
 
   /**
    * @param req
-   * @return The syndicator, if set, or null.
+   * @return The container, if set, or null.
    */
   private static String getContainer(HttpServletRequest req) {
     String container = req.getParameter("container");
     if (container == null) {
-      // The paramater used to be called 'synd' FIXME: schedule removal
+      // The parameter used to be called 'synd' FIXME: schedule removal
       container = req.getParameter("synd");
     }
     return container;

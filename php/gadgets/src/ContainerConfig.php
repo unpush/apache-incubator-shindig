@@ -15,11 +15,11 @@ class ContainerConfig {
 	private function loadContainers($containers)
 	{
 		if (! file_exists($containers) || ! is_dir($containers)) {
-			throw new Exception("Invalid syndicator path");
+			throw new Exception("Invalid container path");
 		}
 		foreach (glob("$containers/*") as $file) {
 			if (! is_readable($file)) {
-				throw new Exception("Could not read syndicator config: $file");
+				throw new Exception("Could not read container config: $file");
 			}
 			if (is_dir($file)) {
 				// support recursive loading of sub directories
