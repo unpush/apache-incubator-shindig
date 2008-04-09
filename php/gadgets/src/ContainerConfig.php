@@ -8,11 +8,11 @@ class ContainerConfig {
 	public function __construct($defaultSyndicator)
 	{
 		if (! empty($defaultSyndicator)) {
-			$this->loadSyndicators($defaultSyndicator);
+			$this->loadContainers($defaultSyndicator);
 		}
 	}
 
-	private function loadSyndicators($syndicators)
+	private function loadContainers($syndicators)
 	{
 		if (! file_exists($syndicators) || ! is_dir($syndicators)) {
 			throw new Exception("Invalid syndicator path");
@@ -23,7 +23,7 @@ class ContainerConfig {
 			}
 			if (is_dir($file)) {
 				// support recursive loading of sub directories
-				$this->loadSyndicators($file);
+				$this->loadContainers($file);
 			} else {
 				$this->loadFromFile($file);
 			}
