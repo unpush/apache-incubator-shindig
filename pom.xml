@@ -23,7 +23,7 @@
         <groupId>org.apache.shindig</groupId>
         <artifactId>shindig-parent</artifactId>
         <version>1-SNAPSHOT</version>
-        <relativePath>pom/parent/pom.xml</relativePath>
+        <relativePath>java/pom.xml</relativePath>
     </parent>
 
     <groupId>org.apache.shindig</groupId>
@@ -50,8 +50,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
-	        <module>pom/parent</module>
-                <module>java/gadgets</module>
+	              <module>java</module>
             </modules>
         </profile>
 
