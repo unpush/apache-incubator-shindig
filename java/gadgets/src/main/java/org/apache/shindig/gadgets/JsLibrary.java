@@ -127,7 +127,7 @@ public final class JsLibrary {
               content.substring(0, content.length() - 3) + ".opt.js", type);
         }
         debugContent = loadData(content, type);
-        if (optimizedContent == null || optimizedContent.length() == 0) {
+        if (optimizedContent == null || optimizedContent.isEmpty()) {
           optimizedContent = debugContent;
         }
         break;

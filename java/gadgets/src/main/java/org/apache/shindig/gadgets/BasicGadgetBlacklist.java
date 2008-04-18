@@ -90,7 +90,7 @@ public class BasicGadgetBlacklist implements GadgetBlacklist {
     String line;
     while ((line = in.readLine()) != null) {
       line = line.trim();
-      if (line.length() == 0 || line.charAt(0) == COMMENT_MARKER) {
+      if (line.isEmpty() || line.charAt(0) == COMMENT_MARKER) {
         continue;
       }
 

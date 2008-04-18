@@ -212,7 +212,7 @@ public final class Check {
    * @throws IllegalArgumentException if the check fails.
    */
   public static void notEmpty(String string) {
-    if (string == null || string.length() == 0) {
+    if (string == null || string.isEmpty()) {
       throw new IllegalArgumentException("String must be non-empty");
     }
   }
@@ -223,7 +223,7 @@ public final class Check {
    * @throws IllegalArgumentException if the check fails.
    */
   public static void notEmpty(String string, String message) {
-    if (string == null || string.length() == 0) {
+    if (string == null || string.isEmpty()) {
       throw new IllegalArgumentException(message);
     }
   }
@@ -234,7 +234,7 @@ public final class Check {
    * @throws IllegalArgumentException if the check fails.
    */
   public static void notEmpty(String string, String message, Object... args) {
-    if (string == null || string.length() == 0) {
+    if (string == null || string.isEmpty()) {
       throw new IllegalArgumentException(String.format(message, args));
     }
   }

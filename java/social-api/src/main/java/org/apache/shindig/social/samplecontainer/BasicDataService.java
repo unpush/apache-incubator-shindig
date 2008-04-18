@@ -77,7 +77,7 @@ public class BasicDataService implements DataService {
    * @return true if the key is a valid appdata key, false otherwise.
    */
   public static boolean isValidKey(String key) {
-    if (key == null || key.length() == 0) {
+    if (key == null || key.isEmpty()) {
       return false;
     }
     for (int i = 0; i < key.length(); ++i) {

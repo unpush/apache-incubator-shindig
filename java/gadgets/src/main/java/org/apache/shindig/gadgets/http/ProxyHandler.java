@@ -168,7 +168,7 @@ public class ProxyHandler {
         postBody = getParameter(request, POST_DATA_PARAM, "").getBytes();
 
         String headerData = request.getParameter(HEADERS_PARAM);
-        if (headerData == null || headerData.length() == 0) {
+        if (headerData == null || headerData.isEmpty()) {
           headers = Collections.emptyMap();
         } else {
           // We actually only accept single key value mappings now.
@@ -348,7 +348,7 @@ public class ProxyHandler {
             "Invalid request url scheme; only " +
             "\"http\" and \"https\" supported.");
       }
-      if (url.getPath() == null || url.getPath().length() == 0) {
+      if (url.getPath() == null || url.getPath().isEmpty()) {
         // Forcibly set the path to "/" if it is empty
         url = new URI(url.getScheme(),
                       url.getUserInfo(),
