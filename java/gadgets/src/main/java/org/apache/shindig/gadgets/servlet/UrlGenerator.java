@@ -174,6 +174,6 @@ public class UrlGenerator {
         jsBuf.append(library.getContent());
       }
     }
-    jsChecksum = HashUtil.checksum(jsBuf.toString().getBytes());
+    jsChecksum = HashUtil.checksum(jsBuf.toString().getBytes()); //FIXME: encoding
   }
 }

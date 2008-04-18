@@ -155,7 +155,7 @@ public class GadgetSpec {
 
     // This might not be good enough; should we take message bundle changes
     // into account?
-    this.checksum = HashUtil.checksum(xml.getBytes());
+    this.checksum = HashUtil.checksum(xml.getBytes()); //FIXME: encoding
 
     NodeList children = doc.getChildNodes();
 
