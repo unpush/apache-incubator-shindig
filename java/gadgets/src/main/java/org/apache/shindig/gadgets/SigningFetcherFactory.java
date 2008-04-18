@@ -66,7 +66,7 @@ public class SigningFetcherFactory {
   @Inject
   public SigningFetcherFactory(@Named("signing.key-name") String keyName,
                                @Named("signing.key-file") String keyFile) {
-    if (keyName == null || keyName.length() == 0) {
+    if (keyName == null || keyName.isEmpty()) {
       this.keyName = null;
     } else {
       this.keyName = keyName;

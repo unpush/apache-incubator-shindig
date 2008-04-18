@@ -185,7 +185,7 @@ public class GadgetRenderingTask {
     String forcedLibs = request.getParameter("libs");
     Set<String> libs = new HashSet<String>();
     if (forcedLibs != null) {
-      if (forcedLibs.trim().length() == 0) {
+      if (forcedLibs.trim().isEmpty()) {
         libs.add("core");
       } else {
         libs.addAll(Arrays.asList(forcedLibs.split(":")));
@@ -318,7 +318,7 @@ public class GadgetRenderingTask {
     // for different error codes.
     logger.log(Level.INFO, "Failed to render gadget", error);
     String message = error.getMessage();
-    if (message == null || message.length() == 0) {
+    if (message == null || message.isEmpty()) {
       message = "Failed to render gadget: " + error.getCode().toString();
     }
     response.getWriter().print(message);

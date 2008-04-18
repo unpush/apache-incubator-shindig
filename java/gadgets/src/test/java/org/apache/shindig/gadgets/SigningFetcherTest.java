@@ -230,7 +230,7 @@ public class SigningFetcherTest extends TestCase {
         url.getPath());
     List<OAuth.Parameter> queryParams = OAuth.decodeForm(url.getQuery());
     String body = req.getPostBodyAsString();
-    if (body.length() == 0) {
+    if (body.isEmpty()) {
       body = null;
     }
     List<OAuth.Parameter> postParams = OAuth.decodeForm(body);

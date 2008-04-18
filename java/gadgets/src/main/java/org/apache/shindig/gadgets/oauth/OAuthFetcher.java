@@ -359,7 +359,7 @@ public class OAuthFetcher extends RemoteContentFetcher {
               "OAuth param location can only be post_body if post body if of " +
               "type x-www-form-urlencoded");
         }
-        if (postBody == null || postBody.length() == 0) {
+        if (postBody == null || postBody.isEmpty()) {
           postBody = OAuth.formEncode(oauthParams);
         } else {
           postBody = new StringBuilder()
