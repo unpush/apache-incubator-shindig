@@ -41,6 +41,7 @@ ChangeLog = svn:eol-style=native;svn:mime-type=text/plain
 *.jpg = svn:mime-type=image/jpeg
 *.gif = svn:mime-type=image/gif
 *.java = svn:eol-style=native
+*.php = svn:eol-style=native
 *.xml = svn:mime-type=text/xml;svn:eol-style=native
 *.xsl = svn:mime-type=text/xml;svn:eol-style=native
 *.xsd = svn:mime-type=text/xml;svn:eol-style=native
