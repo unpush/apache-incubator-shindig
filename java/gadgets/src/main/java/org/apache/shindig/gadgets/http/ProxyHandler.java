@@ -65,7 +65,7 @@ public class ProxyHandler {
   public static final String URL_PARAM = "url";
   private static final String REFRESH_PARAM = "refresh";
 
-  private static final Logger logger = 
+  private static final Logger logger =
       Logger.getLogger(ProxyHandler.class.getPackage().getName());
 
 
@@ -248,7 +248,7 @@ public class ProxyHandler {
       RemoteContent results) {
     try {
       JSONObject resp = new JSONObject();
-      
+
       resp.put("body", results.getResponseAsString());
       resp.put("rc", results.getHttpStatusCode());
 
@@ -288,7 +288,7 @@ public class ProxyHandler {
       logger.info(msg);
       throw new GadgetException(GadgetException.Code.INVALID_PARAMETER, msg);
     }
-    
+
     if (request.getHeader("If-Modified-Since") != null) {
       response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
       return;

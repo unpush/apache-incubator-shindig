@@ -443,7 +443,7 @@ public class OAuthFetcher extends ChainedContentFetcher {
     addResponseMetadata(content);
     return content;
   }
-  
+
   private void addResponseMetadata(RemoteContent content) {
     if (newClientState != null) {
       content.getMetadata().put(CLIENT_STATE, newClientState);

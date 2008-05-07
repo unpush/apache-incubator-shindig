@@ -21,41 +21,41 @@
 class GeneralSecurityException extends Exception {}
 
 final class Crypto {
-	
+
 	/**
 	 * HMAC algorithm to use
 	 */
 	private static $HMAC_TYPE = "HMACSHA1";
-	
-	/** 
-	 * minimum safe length for hmac keys (this is good practice, but not 
+
+	/**
+	 * minimum safe length for hmac keys (this is good practice, but not
 	 * actually a requirement of the algorithm
 	 */
 	private static $MIN_HMAC_KEY_LEN = 8;
-	
+
 	/**
 	 * Encryption algorithm to use
 	 */
 	private static $CIPHER_TYPE = "AES/CBC/PKCS5Padding";
-	
+
 	private static $CIPHER_KEY_TYPE = "AES";
-	
+
 	/**
 	 * Use keys of this length for encryption operations
 	 */
 	public static $CIPHER_KEY_LEN = 16;
-	
+
 	private static $CIPHER_BLOCK_SIZE = 16;
-	
+
 	/**
 	 * Length of HMAC SHA1 output
 	 */
 	public static $HMAC_SHA1_LEN = 20;
-	
+
 	private function __construct()
 	{
 	}
-	
+
 	public static function hmacSha1Verify($key, $in, $expected)
 	{
 		$hmac = Crypto::hmacSha1($key, $in);
@@ -63,7 +63,7 @@ final class Crypto {
 			throw new GeneralSecurityException("HMAC verification failure");
 		}
 	}
-	
+
 	public static function aes128cbcEncrypt($key, $text)
 	{
 		/* Open the cipher */
@@ -86,7 +86,7 @@ final class Crypto {
 		 */
 		return $iv . $encrypted;
 	}
-	
+
 	public static function aes128cbcDecrypt($key, $encrypted_text)
 	{
 		/* Open the cipher */
@@ -103,7 +103,7 @@ final class Crypto {
 		/* Show string */
 		return trim($decrypted);
 	}
-	
+
 	public static function hmacSha1($key, $data)
 	{
 		$blocksize = 64;

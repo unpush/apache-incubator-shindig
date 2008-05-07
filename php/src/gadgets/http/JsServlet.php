@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
@@ -23,7 +23,7 @@
  * to retrieve our features javascript code
  */
 class JsServlet extends HttpServlet {
-	
+
 	public function doGet()
 	{
 		$this->noHeaders = true;
@@ -87,7 +87,7 @@ class JsServlet extends HttpServlet {
 			echo $jsData;
 		} else {
 			header("HTTP/1.0 404 Not Found", true);
-		
+
 		}
 		die();
 	}

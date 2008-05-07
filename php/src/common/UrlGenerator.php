@@ -15,11 +15,11 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class UrlGenerator {
-	static function getIframeURL($gadget, $context)	
+	static function getIframeURL($gadget, $context)
 	{
 		$inlineJs = '';
 		foreach ( $gadget->getJsLibraries() as $library ) {
@@ -29,9 +29,9 @@ class UrlGenerator {
 			}
 		}
 		$v = md5($inlineJs);
-		
+
 		$view = HttpUtil::getView($gadget, $context);
-		
+
 		$up = '';
 		$prefs = $context->getUserPrefs();
 		foreach ($gadget->getUserPrefs() as $pref) {
@@ -42,7 +42,7 @@ class UrlGenerator {
 			}
 			$up .= '&up_'.urlencode($name).'='.urlencode($value);
 		}
-		
+
 		// note: put the URL last, else some browsers seem to get confused (reported by hi5)
 		return
 			Config::get('default_iframe_prefix').
@@ -50,9 +50,9 @@ class UrlGenerator {
 			($context->getIgnoreCache() ? 'nocache=1' : '&v='.$v).
 			($context->getModuleId() != 0 ? '&mid='.$context->getModuleId() : '').
 			'&lang='.$context->getLocale()->getLanguage().
-			'&country='.$context->getLocale()->getCountry().			
+			'&country='.$context->getLocale()->getCountry().
 			'&view='.$view->getName().
 			$up.
-			'&url='.urlencode($context->getUrl());		
+			'&url='.urlencode($context->getUrl());
 	}
 }

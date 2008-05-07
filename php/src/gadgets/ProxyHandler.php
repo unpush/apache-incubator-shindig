@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 // according to features/core/io.js, this is high on the list of things to scrap
@@ -23,19 +23,19 @@ define('UNPARSEABLE_CRUFT', "throw 1; < don't be evil' >");
 
 /**
  * The ProxyHandler class does the actual proxy'ing work. it deals both with
- * GET and POST based input, and peforms a request based on the input, headers and 
+ * GET and POST based input, and peforms a request based on the input, headers and
  * httpmethod params. It also deals with request signing and verification thru the
- * authz and st (security token) params. 
+ * authz and st (security token) params.
  *
  */
 class ProxyHandler {
 	private $context;
-	
+
 	public function __construct($context)
 	{
 		$this->context = $context;
 	}
-	
+
 	/**
 	 * Fetches content and returns it in JSON format
 	 *
@@ -73,7 +73,7 @@ class ProxyHandler {
 		}
 		die();
 	}
-	
+
 	/**
 	 * Fetches the content and returns it as-is using the headers as returned
 	 * by the remote host.
@@ -120,7 +120,7 @@ class ProxyHandler {
 		// make sure the HttpServlet destructor doesn't override ours
 		die();
 	}
-	
+
 	/**
 	 * Both fetch and fetchJson call this function to retrieve the actual content
 	 *
@@ -131,7 +131,7 @@ class ProxyHandler {
 	private function fetchContent($signedUrl, $method)
 	{
 		//TODO get actual character encoding from the request
-		
+
 
 		// Extract the request headers from the $_SERVER super-global (this -does- unfortunatly mean that any header that php doesn't understand won't be proxied thru though)
 		// if this turns out to be a problem we could add support for HTTP_RAW_HEADERS, but this depends on a php.ini setting, so i'd rather prevent that from being required
@@ -175,10 +175,10 @@ class ProxyHandler {
 		}
 		return $request;
 	}
-	
+
 	/**
 	 * Sets the caching headers (overwriting anything the remote host set) to force
-	 * the browser not to cache this. 
+	 * the browser not to cache this.
 	 *
 	 */
 	private function setCachingHeaders()
@@ -187,7 +187,7 @@ class ProxyHandler {
 		header("Cache-Control: private; max-age=0", true);
 		header("Expires: " . gmdate("D, d M Y H:i:s", time() - 3000) . " GMT", true);
 	}
-	
+
 	/**
 	 * Empty function, should make something practical here some day.
 	 * it's function should be to validate the given url if its in
@@ -201,7 +201,7 @@ class ProxyHandler {
 		//TODO should really make a PHP version of the URI class and validate in all the locations the java version does
 		return $url;
 	}
-	
+
 	/**
 	 * Extracts the 'st' token from the GET or POST params and calls the
 	 * signer to validate the token
@@ -220,7 +220,7 @@ class ProxyHandler {
 		}
 		return $signer->createToken($token);
 	}
-	
+
 	/**
 	 * Signs a url with the GadgetToken
 	 *
@@ -243,7 +243,7 @@ class ProxyHandler {
 		}
 		return $token->signUrl($originalUrl, $method);
 	}
-	
+
 	private function request_headers()
 	{
 		// Try to use apache's request headers if available

@@ -1,7 +1,7 @@
 <?
 /*
- * I really detest such config files to be honest, why put configuration in a web document! 
- * But since PHP lacks a propper way to set application configurations, and any other method 
+ * I really detest such config files to be honest, why put configuration in a web document!
+ * But since PHP lacks a propper way to set application configurations, and any other method
  * would be horribly slow (db, xml, ini files etc), so ... here's our config.php
  */
 $shindigConfig = array(
@@ -9,7 +9,7 @@ $shindigConfig = array(
 	'debug' => false,
 
 	// The base prefix under which the our url's live, if its the root set this to ''
-	// don't forget to update your .htaccess to reflect this, as well as your container 
+	// don't forget to update your .htaccess to reflect this, as well as your container
 	// javascript like: gadget.setServerBase('/someBaseUrl/');
 	'web_prefix' => '',
 
@@ -23,18 +23,18 @@ $shindigConfig = array(
 	// The html / javascript samples use a plain text demo token,
 	// set this to false on anything resembling a real site
 	'allow_plaintext_token' => true,
-	
+
 	// P3P (Platform for Privacy Preferences) header for allowing cross domain cookies.
 	// Setting this to an empty string: '' means no P3P header will be send
 	'P3P' => 'CP="CAO PSA OUR"',
 
-	// location of the features directory on disk. The default setting assumes you did a 
+	// location of the features directory on disk. The default setting assumes you did a
 	// full checkout of the shindig project, and not just the php part.
 	// Otherwise also checkout the features, config and javascript directories and set
 	// these to their locations
 	'features_path' => realpath(dirname(__FILE__)) . '/../features/',
 	'container_path' => realpath(dirname(__FILE__)) . '/../config/',
-	'javascript_path' => realpath(dirname(__FILE__)) . '/../javascript/', 
+	'javascript_path' => realpath(dirname(__FILE__)) . '/../javascript/',
 	'container_config' => realpath(dirname(__FILE__)) . '/../config/container.js',
 
 	// The data handlers for the social data, this is a list of class names
@@ -44,42 +44,42 @@ $shindigConfig = array(
 	'handlers' => '',
 
 	'focedJsLibs' => '',
-	
+
 	// The PHP gadget server can compress feature javascript libraries on the fly,
 	// set this command to the javascript compressor you want to to use, we advice
 	// using yuicompressor (http://developer.yahoo.com/yui/compressor/) but many others
-	// will work too. When building your command, use %1 as the input file, and %2 
+	// will work too. When building your command, use %1 as the input file, and %2
 	// as the output file. Leave empty if you don't want this functionality.
 	//
 	// Config example for using the yuicompressor:
 	//'compress_command' => "java -jar " . realpath(dirname(__FILE__)) . "/yuicompressor-2.3.5.jar -o %2\$s %1\$s",
 	'compress_command' => '',
-	
-	// Configurable classes to use, this way we provide extensibility for what 
-	// backends the gadget server uses for its logic functionality. 
+
+	// Configurable classes to use, this way we provide extensibility for what
+	// backends the gadget server uses for its logic functionality.
 	'blacklist_class' => 'BasicGadgetBlacklist',
 	'remote_content' => 'BasicRemoteContent',
 	'gadget_signer' => 'BasicGadgetTokenDecoder',
 	'gadget_token' => 'BasicGadgetToken',
-	'data_cache' => 'CacheFile', 
-	
+	'data_cache' => 'CacheFile',
+
 	// gadget server specific settings
 	'userpref_param_prefix' => 'up_',
 	'libs_param_name' => 'libs',
 	// location  of the javascript handler (include the full path), default this is /gadgets/js
 	'default_js_prefix' => '/gadgets/js/',
 	// location of the gadget iframe renderer, default this is /gadgets/ifr?
-	'default_iframe_prefix' => '/gadgets/ifr?', 
-	
+	'default_iframe_prefix' => '/gadgets/ifr?',
+
 	// if your using memcached, these values are used for locating the server
 	// if your not using memcached, ignore these values
 	'cache_host' => 'localhost',
-	'cache_port' => 11211, 
-	
+	'cache_port' => 11211,
+
 	// global cache age policy and location
 	'cache_time' => 24 * 60 * 60,
-	'cache_root' => '/tmp/shindig', 
-	
+	'cache_root' => '/tmp/shindig',
+
 	// In some cases we need to know the site root (for features forinstance)
 	'base_path' => realpath(dirname(__FILE__))
 );

@@ -161,7 +161,7 @@ public class ContainerConfig {
       throw new GadgetException(GadgetException.Code.INVALID_PATH, e);
     }
   }
- 
+
   /**
    * Loads resources recursively.
    * @param files The base paths to look for container.xml

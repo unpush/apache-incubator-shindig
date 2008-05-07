@@ -149,7 +149,7 @@ public class HttpUtil {
 
     newHeaders.put("Cache-Control",
         Arrays.asList("public, max-age=" + (age / 1000L)));
-    
+
     return newHeaders;
   }
 

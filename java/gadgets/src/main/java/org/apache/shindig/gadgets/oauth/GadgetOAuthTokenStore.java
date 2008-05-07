@@ -174,7 +174,7 @@ public class GadgetOAuthTokenStore {
 
     if (isEmpty(tokenKey.getServiceName())) {
       throw new IllegalArgumentException("found empty service " +
-      		                             "name in TokenKey");
+		                             "name in TokenKey");
     }
 
     if (isEmpty(tokenKey.getUserId())) {
@@ -247,7 +247,7 @@ public class GadgetOAuthTokenStore {
 
     String accessUrl = getOAuthParameter(oauthParams, ACCESS_URL, false);
     String accessMethod = getOAuthParameter(
-        oauthParams, 
+        oauthParams,
         ACCESS_HTTP_METHOD,
         true);
     if (accessMethod == null) {

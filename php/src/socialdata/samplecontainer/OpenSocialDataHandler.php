@@ -26,19 +26,19 @@ class OpenSocialDataHandler extends GadgetDataHandler {
 	private $peopleHandler;
 	private $dataHandler;
 	private $activitiesHandler;
-	
+
 	public function __construct()
 	{
 		$this->peopleHandler = new BasicPeopleService();
 		$this->dataHandler = new BasicDataService();
 		$this->activitiesHandler = new BasicActivitiesService();
 	}
-	
+
 	public function shouldHandle($requestType)
 	{
 		return in_array($requestType, $this->handles);
 	}
-	
+
 	public function handleRequest($request)
 	{
 		try {
@@ -48,7 +48,7 @@ class OpenSocialDataHandler extends GadgetDataHandler {
 			$idSpec = idSpec::fromJson($params['idSpec']);
 			$peopleIds = $this->peopleHandler->getIds($idSpec, $request->getToken());
 			switch ( $type) {
-				
+
 				case 'FETCH_PEOPLE' :
 					$profileDetail = $params["profileDetail"];
 					$profileDetailFields = Array();
@@ -63,7 +63,7 @@ class OpenSocialDataHandler extends GadgetDataHandler {
 					// thing along?
 					$response = $this->peopleHandler->getPeople($peopleIds, $sortOrder, $filter, $first, $max, $profileDetailFields, $request->getToken());
 					break;
-				
+
 				case 'FETCH_PERSON_APP_DATA' :
 					$jsonKeys = $params["keys"];
 					$keys = array();
@@ -72,7 +72,7 @@ class OpenSocialDataHandler extends GadgetDataHandler {
 					}
 					$response = $this->dataHandler->getPersonData($peopleIds, $keys, $request->getToken());
 					break;
-				
+
 				case 'UPDATE_PERSON_APP_DATA' :
 					// this is either viewer or owner right? lets hack in propper support shall we?
 					// We only support updating one person right now
@@ -81,11 +81,11 @@ class OpenSocialDataHandler extends GadgetDataHandler {
 					$value = ! empty($params["value"]) ? $params["value"] : '';
 					$response = $this->dataHandler->updatePersonData($id, $key, $value, $request->getToken());
 					break;
-				
+
 				case 'FETCH_ACTIVITIES' :
 					$response = $this->activitiesHandler->getActivities($peopleIds, $request->getToken());
 					break;
-				
+
 				case 'CREATE_ACTIVITY' :
 					break;
 			}

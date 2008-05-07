@@ -18,7 +18,7 @@
  */
 
 class BasicPeopleService extends PeopleService {
-	
+
 	private function comparator($person, $person1)
 	{
 		$name = $person['name']->getUnstructured();
@@ -28,7 +28,7 @@ class BasicPeopleService extends PeopleService {
 		}
 		return ($name < $name1) ? - 1 : 1;
 	}
-	
+
 	public function getPeople($ids, $sortOrder, $filter, $first, $max, $profileDetails, $token)
 	{
 		$allPeople = XmlStateFileFetcher::get()->getAllPeople();
@@ -45,8 +45,8 @@ class BasicPeopleService extends PeopleService {
 				}
 				//FIXME (see note below)
 				// The java sample container code returns everything that is listed in the XML file
-				// and filters out all the null values. I -think- the more correct thing to do is 
-				// return a json object with only the requested profile details ... 
+				// and filters out all the null values. I -think- the more correct thing to do is
+				// return a json object with only the requested profile details ...
 				// but double check later to make sure :)
 				if (is_array($profileDetails) && count($profileDetails)) {
 					$newPerson = array();
@@ -68,7 +68,7 @@ class BasicPeopleService extends PeopleService {
 		if ($sortOrder == 'name') {
 			usort($people, array($this, 'comparator'));
 		}
-		
+
 		//TODO: The samplecontainer doesn't support any filters yet. We should fix this.
 		$totalSize = count($people);
 		$last = $first + $max;
@@ -77,7 +77,7 @@ class BasicPeopleService extends PeopleService {
 		$collection = new ApiCollection($people, $first, $totalSize);
 		return new ResponseItem(null, null, $collection);
 	}
-	
+
 	public function getIds($idSpec, $token)
 	{
 		$friendIds = XmlStateFileFetcher::get()->getFriendIds();

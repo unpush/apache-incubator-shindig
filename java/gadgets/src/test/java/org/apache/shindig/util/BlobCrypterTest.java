@@ -35,13 +35,13 @@ public class BlobCrypterTest {
 
   private BasicBlobCrypter crypter;
   private FakeTimeSource timeSource;
-  
+
   public BlobCrypterTest() {
     crypter = new BasicBlobCrypter("0123456789abcdef".getBytes());
     timeSource = new FakeTimeSource();
     crypter.timeSource = timeSource;
   }
-  
+
   @Test
   public void testEncryptAndDecrypt() throws Exception {
     checkString("");
@@ -62,7 +62,7 @@ public class BlobCrypterTest {
     Map<String, String> out = crypter.unwrap(blob, 0);
     assertEquals(string, out.get("a"));
   }
-  
+
   @Test
   public void testManyEntries() throws Exception {
     Map<String, String> in = new HashMap<String, String>();
@@ -75,7 +75,7 @@ public class BlobCrypterTest {
       assertEquals(out.get(Integer.toString(i)), Integer.toString(i));
     }
   }
-  
+
   @Test
   public void testTimeStamping() throws Exception {
     long start = 1201917724000L;
@@ -83,7 +83,7 @@ public class BlobCrypterTest {
     int maxAge = 300; // 5 minutes
     int realAge = 600; // 10 minutes
     try {
-      
+
       timeSource.setCurrentTimeMillis(start);
       Map<String, String> in = new HashMap<String, String>();
       in.put("a", "b");
@@ -97,7 +97,7 @@ public class BlobCrypterTest {
       assertEquals(start+skew+maxAge*1000, e.maxDate.getTime());
     }
   }
-  
+
   @Test
   public void testTamperIV() throws Exception {
     try {
@@ -113,7 +113,7 @@ public class BlobCrypterTest {
       // Good
     }
   }
-  
+
   @Test
   public void testTamperData() throws Exception {
     try {
@@ -129,7 +129,7 @@ public class BlobCrypterTest {
       // Good
     }
   }
-  
+
   @Test
   public void testTamperMac() throws Exception {
     try {
@@ -145,7 +145,7 @@ public class BlobCrypterTest {
       // Good
     }
   }
-  
+
   @Test
   public void testFixedKey() throws Exception {
     BlobCrypter alt = new BasicBlobCrypter("0123456789abcdef".getBytes());
@@ -155,7 +155,7 @@ public class BlobCrypterTest {
     Map<String, String> out = alt.unwrap(blob, 30);
     assertEquals("b", out.get("a"));
   }
-  
+
   @Test
   public void testBadKey() throws Exception {
     BlobCrypter alt = new BasicBlobCrypter("1123456789abcdef".getBytes());
@@ -169,7 +169,7 @@ public class BlobCrypterTest {
       // Good.
     }
   }
-  
+
   @Test
   public void testShortKeyFails() throws Exception {
     try {

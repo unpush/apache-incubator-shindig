@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
@@ -27,7 +27,7 @@ abstract class GadgetToken {
   //FIXME Hmm seems php is refusing to let me make abstract static functions? odd
   static public function createFromToken($token, $maxage) {}
   static public function createFromValues($owner, $viewer, $app, $domain, $appUrl, $moduleId) {}
-  
+
 
   /**
    * Serializes the token into a string. This can be the exact same as
@@ -52,7 +52,7 @@ abstract class GadgetToken {
    * @return the application id from the token, or null if there is none.
    */
   abstract public function getAppId();
-  
+
   /**
    * @return the domain from the token, or null if there is none.
    */

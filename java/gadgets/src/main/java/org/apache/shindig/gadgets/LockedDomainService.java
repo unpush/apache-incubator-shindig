@@ -36,33 +36,33 @@ public interface LockedDomainService {
   /**
    * Check whether embedded content (img src, for example) can render on
    * a particular host.
-   * 
+   *
    * @param host host name for rendered content
    * @return true if the content should be allowed to render
    */
   public boolean embedCanRender(String host);
-  
+
   /**
    * Figure out where embedded content should render.
-   * 
+   *
    * @return host name for safe rendering of embedded content.
    */
   public String getEmbedHost();
-  
+
   /**
    * Calculate the locked domain for a particular gadget on a particular
    * container.
-   * 
+   *
    * @param gadget URL of the gadget
    * @param container name of the container page
    * @return the host name on which the gadget should render
    */
   public String getLockedDomainForGadget(String gadget, String container);
-  
+
   /**
    * Check whether a gadget should be allowed to render on a particular
    * host.
-   * 
+   *
    * @param host host name for the content
    * @param gadget URL of the gadget
    * @param container container

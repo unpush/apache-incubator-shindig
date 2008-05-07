@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /*
@@ -30,7 +30,7 @@ class HttpServlet {
 	private $noCache = false;
 	private $cacheTime;
 	public $noHeaders = false;
-	
+
 	/**
 	 * Enables output buffering so we can do correct header handling in the destructor
 	 *
@@ -42,7 +42,7 @@ class HttpServlet {
 		// to do our header magic, we need output buffering on
 		ob_start();
 	}
-	
+
 	/**
 	 * Code ran after the event handler, adds headers etc to the request
 	 * If noHeaders is false, it adds all the correct http/1.1 headers to the request
@@ -97,10 +97,10 @@ class HttpServlet {
 			echo $content;
 		}
 	}
-	
+
 	/**
-	 * Sets the time in seconds that the browser's cache should be 
-	 * considered out of date (through the Expires header) 
+	 * Sets the time in seconds that the browser's cache should be
+	 * considered out of date (through the Expires header)
 	 *
 	 * @param int $time time in seconds
 	 */
@@ -108,7 +108,7 @@ class HttpServlet {
 	{
 		$this->cacheTime = $time;
 	}
-	
+
 	/**
 	 * Returns the time in seconds that the browser is allowed to cache the content
 	 *
@@ -118,9 +118,9 @@ class HttpServlet {
 	{
 		return $this->cacheTime;
 	}
-	
+
 	/**
-	 * Sets the content type of this request (forinstance: text/html or text/javascript, etc) 
+	 * Sets the content type of this request (forinstance: text/html or text/javascript, etc)
 	 *
 	 * @param string $type content type header to use
 	 */
@@ -128,9 +128,9 @@ class HttpServlet {
 	{
 		$this->contentType = $type;
 	}
-	
+
 	/**
-	 * Returns the current content type 
+	 * Returns the current content type
 	 *
 	 * @return string content type string
 	 */
@@ -138,7 +138,7 @@ class HttpServlet {
 	{
 		return $this->contentType;
 	}
-	
+
 	/**
 	 * returns the current last modified time stamp
 	 *
@@ -148,7 +148,7 @@ class HttpServlet {
 	{
 		return $this->lastModified;
 	}
-	
+
 	/**
 	 * Sets the last modified timestamp. It automaticly checks if this timestamp
 	 * is larger then its current timestamp, and if not ignores the call
@@ -159,7 +159,7 @@ class HttpServlet {
 	{
 		$this->lastModified = max($this->lastModified, $modified);
 	}
-	
+
 	/**
 	 * Sets the noCache boolean. If its set to true, no-caching headers will be send
 	 * (pragma no cache, expiration in the past)
@@ -170,7 +170,7 @@ class HttpServlet {
 	{
 		$this->noCache = $cache;
 	}
-	
+
 	/**
 	 * returns the noCache boolean
 	 *

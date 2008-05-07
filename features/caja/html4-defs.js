@@ -16,7 +16,7 @@
 /**
  * @fileoverview
  * Whitelists of HTML elements and attributes.
- * 
+ *
  * @author mikesamuel@gmail.com
  */
 

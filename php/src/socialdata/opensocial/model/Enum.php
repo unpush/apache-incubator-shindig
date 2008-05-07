@@ -30,30 +30,30 @@ abstract class Enum {
   public $displayValue;
   private $jsonString;
   public $values = array();
-  
+
   public function __construct($jsonString, $displayValue)
   {
-  	//FIXME should add enum restriction checking to this
-  	if (!isset($this->values[$jsonString])) {
-  		throw new Exception("Invalid Enum key");
-  	}
-  	$this->jsonString = $jsonString;
-  	$this->displayValue = $displayValue;
+	//FIXME should add enum restriction checking to this
+	if (!isset($this->values[$jsonString])) {
+		throw new Exception("Invalid Enum key");
+	}
+	$this->jsonString = $jsonString;
+	$this->displayValue = $displayValue;
   }
-  
+
   public function getDisplayValue()
   {
 	return $this->displayValue;
   }
-  
+
   public function setDisplayValue($displayValue)
   {
-  	$this->displayValue = $displayValue;
+	$this->displayValue = $displayValue;
   }
-  
+
   public function toString()
   {
-  	return $this->jsonString;
+	return $this->jsonString;
   }
 }
 
@@ -79,8 +79,8 @@ class EnumDrinker extends Enum {
  */
 class EnumGender extends Enum {
 	public $values = array (
-    	'FEMALE' => "Female",
-    	'MALE' => "Male"
+	'FEMALE' => "Female",
+	'MALE' => "Male"
 	);
 }
 

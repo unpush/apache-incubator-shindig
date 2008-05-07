@@ -36,7 +36,7 @@ import java.util.List;
  */
 public class SigningFetcherTest extends TestCase {
   private static final String PRIVATE_KEY_TEXT =
-    "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALRiMLAh9iimur8V" +                   
+    "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALRiMLAh9iimur8V" +
     "A7qVvdqxevEuUkW4K+2KdMXmnQbG9Aa7k7eBjK1S+0LYmVjPKlJGNXHDGuy5Fw/d" +
     "7rjVJ0BLB+ubPK8iA/Tw3hLQgXMRRGRXXCn8ikfuQfjUS1uZSatdLB81mydBETlJ" +
     "hI6GH4twrbDJCR2Bwy/XWXgqgGRzAgMBAAECgYBYWVtleUzavkbrPjy0T5FMou8H" +
@@ -141,10 +141,10 @@ public class SigningFetcherTest extends TestCase {
     RemoteContentRequest unsigned
         = makeContentRequest("GET", "http://test?" + tricky, null);
     try {
-    	RemoteContentRequest out = signAndInspect(unsigned);
-    	fail("Should have thrown");
+	RemoteContentRequest out = signAndInspect(unsigned);
+	fail("Should have thrown");
     } catch (RequestSigningException e) {
-    	// good.
+	// good.
     }
   }
 
@@ -153,10 +153,10 @@ public class SigningFetcherTest extends TestCase {
     RemoteContentRequest unsigned
         = makeContentRequest("POST", "http://test", tricky.getBytes());
     try {
-    	RemoteContentRequest out = signAndInspect(unsigned);
-    	fail("Should have thrown");
+	RemoteContentRequest out = signAndInspect(unsigned);
+	fail("Should have thrown");
     } catch (RequestSigningException e) {
-    	// good.
+	// good.
     }
   }
 
@@ -184,7 +184,7 @@ public class SigningFetcherTest extends TestCase {
     assertTrue(contains(queryParams, "a", "b"));
     assertTrue(contains(queryParams, "a", "c"));
   }
-  
+
   public void testValidParameterCharacters() throws Exception {
     String weird = "~!@$*()-_[]:,./";
     RemoteContentRequest unsigned
@@ -253,10 +253,10 @@ public class SigningFetcherTest extends TestCase {
     RemoteContentRequest unsigned = makeContentRequest(
         "POST", "http://test", "opensocial_foo=bar".getBytes());
     try {
-    	RemoteContentRequest out = signAndInspect(unsigned);
-    	fail("Should have thrown");
+	RemoteContentRequest out = signAndInspect(unsigned);
+	fail("Should have thrown");
     } catch (RequestSigningException e) {
-    	// good.
+	// good.
     }
   }
 
@@ -264,10 +264,10 @@ public class SigningFetcherTest extends TestCase {
     RemoteContentRequest unsigned = makeContentRequest(
         "POST", "http://test", "oauth_foo=bar".getBytes());
     try {
-    	RemoteContentRequest out = signAndInspect(unsigned);
-    	fail("Should have thrown");
+	RemoteContentRequest out = signAndInspect(unsigned);
+	fail("Should have thrown");
     } catch (RequestSigningException e) {
-    	// good.
+	// good.
     }
   }
 

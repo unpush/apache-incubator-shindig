@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /*
@@ -24,14 +24,14 @@
  */
 
 class GadgetServer {
-	
+
 	public function processGadget($context)
 	{
 		$gadget = $this->specLoad($context);
 		$this->featuresLoad($gadget, $context);
 		return $gadget;
 	}
-	
+
 	private function specLoad($context)
 	{
 		if ($context->getBlacklist() != null && $context->getBlacklist()->isBlacklisted($context->getUrl())) {
@@ -46,7 +46,7 @@ class GadgetServer {
 		$gadget = $specParser->parse($xml->getResponseContent(), $context);
 		return $gadget;
 	}
-	
+
 	private function getBundle($localeSpec, $context)
 	{
 		if ($localeSpec != null) {
@@ -61,7 +61,7 @@ class GadgetServer {
 		}
 		return null;
 	}
-	
+
 	private function localeSpec($gadget, $locale)
 	{
 		$localeSpecs = $gadget->getLocaleSpecs();
@@ -73,7 +73,7 @@ class GadgetServer {
 		}
 		return null;
 	}
-	
+
 	private function getLocaleSpec($gadget, $context)
 	{
 		$locale = $context->getLocale();
@@ -89,30 +89,30 @@ class GadgetServer {
 		}
 		return $localeSpec;
 	}
-	
+
 	private function featuresLoad($gadget, $context)
 	{
 		//NOTE i've been a bit liberal here with folding code into this function, while it did get a bit long, the many include()'s are slowing us down
 		// Should really clean this up a bit in the future though
 		$localeSpec = $this->getLocaleSpec($gadget, $context);
-		
+
 		// get the message bundle for this gadget
 		$bundle = $this->getBundle($localeSpec, $context);
-		
+
 		//FIXME this is a half-assed solution between following the refactoring and maintaining some of the old code, fixing this up later
 		$gadget->setMessageBundle($bundle);
-		
+
 		// perform substitutions
 		$substitutor = $gadget->getSubstitutions();
-		
+
 		// Module ID
 		$substitutor->addSubstitution('MODULE', "ID", $gadget->getId()->getModuleId());
-		
+
 		// Messages (multi-language)
 		if ($bundle) {
 			$gadget->getSubstitutions()->addSubstitutions('MSG', $bundle->getMessages());
 		}
-		
+
 		// Bidi support
 		$rtl = false;
 		if ($localeSpec != null) {
@@ -122,7 +122,7 @@ class GadgetServer {
 		$substitutor->addSubstitution('BIDI', "END_EDGE", $rtl ? "left" : "right");
 		$substitutor->addSubstitution('BIDI', "DIR", $rtl ? "rtl" : "ltr");
 		$substitutor->addSubstitution('BIDI', "REVERSE_DIR", $rtl ? "ltr" : "rtl");
-		
+
 		// userPref's
 		$upValues = $gadget->getUserPrefValues();
 		foreach ($gadget->getUserPrefs() as $pref) {
@@ -136,7 +136,7 @@ class GadgetServer {
 			}
 			$substitutor->addSubstitution('USER_PREF', $name, $value);
 		}
-		
+
 		// Process required / desired features
 		$requires = $gadget->getRequires();
 		$needed = array();

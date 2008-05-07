@@ -35,9 +35,9 @@
 (function() {
 
   ___.log('BEWARE: permissive.js loaded');
-  
+
   /**
-   * 
+   *
    */
   function find(obj, name) {
     var result = obj;
@@ -53,11 +53,11 @@
     }
     ___.fail("Internal: can't find '.", name, "' in: ", obj);
   }
-  
+
   var oldKeeper = ___.getKeeper();
 
   var enabled = false;
-  
+
   ___.setKeeper({
 
     /**
@@ -71,7 +71,7 @@
     isEnabled: function() { return enabled; },
 
     /**
-     * After loading permissive, one can 
+     * After loading permissive, one can
      * <tt>___.getKeeper().setEnabled(false)</tt>
      * to disable the permissive behavior of the permissive keeper.
      * <p>
@@ -83,7 +83,7 @@
      * page. (Or, in a non-browser environment, you must still somehow
      * rebuild your live JavaScript environment.)
      */
-    setEnabled: function(newEnabled) { 
+    setEnabled: function(newEnabled) {
       if (newEnabled) {
         ___.log('BEWARE: By enabling permissive.js, ' +
                 'all Caja security is hereby waived.');
@@ -93,11 +93,11 @@
                 'faults. It does not disallow those operations ' +
                 'already allowed. Consider reloading the page.');
       }
-      enabled = newEnabled; 
+      enabled = newEnabled;
     },
 
     /**
-     * 
+     *
      */
     handleRead: function(obj, name) {
       if (enabled && name in obj) {
@@ -115,7 +115,7 @@
     },
 
     /**
-     * 
+     *
      */
     handleCall: function(obj, name, args) {
       if (enabled && typeof obj[name] === 'function') {
@@ -133,7 +133,7 @@
     },
 
     /**
-     * 
+     *
      */
     handleSet: function(obj, name, val) {
       if (enabled) {
@@ -148,7 +148,7 @@
     },
 
     /**
-     * 
+     *
      */
     handleDelete: function(obj, name) {
       if (enabled && ___.hasOwnProp(obj, name)) {
@@ -161,5 +161,5 @@
       return oldKeeper.handleDelete(obj, name);
     }
   });
-  
+
 })();

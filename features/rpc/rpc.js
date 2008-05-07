@@ -160,8 +160,8 @@ gadgets.rpc = function() {
 	        }
 	      }
       } catch (e) {
-      	// Ignore; IE7 throws an exception when trying to read readyState and
-      	// readyState isn't set.
+	// Ignore; IE7 throws an exception when trying to read readyState and
+	// readyState isn't set.
       }
     }
     // Create IFrame if necessary

@@ -28,11 +28,11 @@ public class StringEncodingTest {
   public static junit.framework.Test suite() {
     return new JUnit4TestAdapter(StringEncodingTest.class);
   }
- 
+
   @Test
   public void testBase32() throws Exception {
     StringEncoding encoder = new StringEncoding(
-        "0123456789abcdefghijklmnopqrstuv".toCharArray()); 
+        "0123456789abcdefghijklmnopqrstuv".toCharArray());
     testEncoding(encoder, new byte[] { 0 }, "00");
     testEncoding(encoder, new byte[] { 0, 0 }, "0000");
     testEncoding(encoder, new byte[] { 10, 0 }, "1800");

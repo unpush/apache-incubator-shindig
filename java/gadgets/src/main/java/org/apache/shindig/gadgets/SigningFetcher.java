@@ -78,7 +78,7 @@ public class SigningFetcher extends ChainedContentFetcher {
   protected final String keyName;
 
   /**
-   *  The cache to fetch results in. 
+   *  The cache to fetch results in.
    */
   protected final ContentCache cache;
 
@@ -324,7 +324,7 @@ public class SigningFetcher extends ChainedContentFetcher {
 
   /**
    * Strip out any owner or viewer id passed by the client.
- * @throws RequestSigningException 
+ * @throws RequestSigningException
    */
   private List<Parameter> sanitize(List<Parameter> params)
       throws RequestSigningException {
@@ -334,7 +334,7 @@ public class SigningFetcher extends ChainedContentFetcher {
       if (allowParam(name)) {
         list.add(p);
       } else {
-    	  throw new RequestSigningException("invalid parameter name " + name);
+	  throw new RequestSigningException("invalid parameter name " + name);
       }
     }
     return list;

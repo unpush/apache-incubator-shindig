@@ -19,7 +19,7 @@ The structure of feature.xml is as follows: TODO: link to xml schema for feature
   </container>
 </feature>
 
-Please always make sure that all files you provide are encoded as utf8. 
+Please always make sure that all files you provide are encoded as utf8.
 
 When adding new features, your javascript should conform to shindig javascript coding conventions. This means that you should not be producing new globals and your feature should be compatible with Caja.
 

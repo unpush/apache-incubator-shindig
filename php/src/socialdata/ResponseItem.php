@@ -32,7 +32,7 @@ class ResponseItem {
 		$this->errorMessage = $errorMessage;
 		$this->response = $response;
 	}
-	
+
 	public function getError()
 	{
 		return $this->error;

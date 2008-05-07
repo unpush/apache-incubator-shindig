@@ -113,7 +113,7 @@ public final class JsLibrary {
    *     kept as a url reference, otherwise the file will be fetched and treated
    *     as a FILE type.
    * @return The newly created library.
-   * @throws GadgetException 
+   * @throws GadgetException
    */
   public static JsLibrary create(Type type, String content, String feature,
       ContentFetcher fetcher) throws GadgetException {
@@ -169,7 +169,7 @@ public final class JsLibrary {
    * @param url
    * @param fetcher
    * @return The contents of the JS file, or null if it can't be fetched.
-   * @throws GadgetException 
+   * @throws GadgetException
    */
   private static String loadDataFromUrl(String url,
       ContentFetcher fetcher) throws GadgetException {

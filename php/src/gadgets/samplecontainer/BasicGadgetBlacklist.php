@@ -15,12 +15,12 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class BasicGadgetBlacklist {
 	private $rules = array();
-	
+
 	public function __construct()
 	{
 		$file = Config::get('base_path') . '/blacklist.txt';
@@ -29,7 +29,7 @@ class BasicGadgetBlacklist {
 			$this->rules = explode("\n", file_get_contents($file));
 		}
 	}
-	
+
 	function isBlacklisted($url)
 	{
 		foreach ($this->rules as $rule) {

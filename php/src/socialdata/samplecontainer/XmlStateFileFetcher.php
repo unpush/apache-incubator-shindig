@@ -32,19 +32,19 @@ class XmlStateFileFetcher {
 	private $allData = null;
 	private $friendIdMap = null;
 	private $allActivities = null;
-	
+
 	// Singleton
 	private static $fetcher;
 	private function __construct()
 	{
 		$this->stateFile = DEFAULT_STATE_FILE;
 	}
-	
+
 	private function __clone()
 	{
 		// private, don't allow cloning of a singleton
 	}
-	
+
 	static function get()
 	{
 		// This object is a singleton
@@ -53,7 +53,7 @@ class XmlStateFileFetcher {
 		}
 		return XmlStateFileFetcher::$fetcher;
 	}
-	
+
 	public function resetStateFile($stateFile)
 	{
 		$this->stateFile = $stateFile;
@@ -63,12 +63,12 @@ class XmlStateFileFetcher {
 		$this->allPeople = null;
 		$this->allActivities = null;
 	}
-	
+
 	public function setEvilness($doEvil)
 	{
 		$this->doEvil = $doEvil;
 	}
-	
+
 	private function fetchStateDocument()
 	{
 		if ($this->document != null) {
@@ -84,12 +84,12 @@ class XmlStateFileFetcher {
 		$this->document = $xml;
 		return $this->document;
 	}
-	
+
 	private function turnEvil($originalString)
 	{
 		return $this->doEvil ? SCRIPT_PREFIX . $originalString . SCRIPT_SUFFIX : $originalString;
 	}
-	
+
 	public function getAppData()
 	{
 		if ($this->allData == null) {
@@ -97,7 +97,7 @@ class XmlStateFileFetcher {
 		}
 		return $this->allData;
 	}
-	
+
 	private function setupAppData()
 	{
 		$this->allData = array();
@@ -112,7 +112,7 @@ class XmlStateFileFetcher {
 			$this->allData[$person][$key] = $value;
 		}
 	}
-	
+
 	public function setAppData($id, $key, $value)
 	{
 		if ($this->allData == null) {
@@ -122,7 +122,7 @@ class XmlStateFileFetcher {
 			$this->allData[$id] = array();
 		}
 		$this->allData[$id][$key] = $value;
-		
+
 		// Ok to have a fully functioning compliance test in the sample container we need
 		// to be able to save data too ... since we don't have shared memory between
 		// processes as the java side does, we'll do it the hard way and store the changes
@@ -153,7 +153,7 @@ class XmlStateFileFetcher {
 			throw new Exception("Could not write appData to state file, check the file permissions");
 		}
 	}
-	
+
 	public function getFriendIds()
 	{
 		if ($this->friendIdMap == null) {
@@ -161,7 +161,7 @@ class XmlStateFileFetcher {
 		}
 		return $this->friendIdMap;
 	}
-	
+
 	public function getAllPeople()
 	{
 		if ($this->allPeople == null) {
@@ -169,13 +169,13 @@ class XmlStateFileFetcher {
 		}
 		return $this->allPeople;
 	}
-	
+
 	private function setupPeopleData()
 	{
 		$xml = $this->fetchStateDocument();
 		$this->allPeople = array();
 		$this->friendIdMap = array();
-		
+
 		foreach ( $xml->people->person as $personNode ) {
 			$name = (string)$personNode['name'];
 			$id = (string)$personNode['id'];
@@ -198,7 +198,7 @@ class XmlStateFileFetcher {
 			$this->friendIdMap[$id] = $this->getFriends($personNode);
 		}
 	}
-	
+
 	private function getFriends($personNode)
 	{
 		$friends = array();
@@ -210,7 +210,7 @@ class XmlStateFileFetcher {
 		}
 		return $friends;
 	}
-	
+
 	public function getActivities()
 	{
 		if ($this->allActivities == null) {
@@ -218,7 +218,7 @@ class XmlStateFileFetcher {
 		}
 		return $this->allActivities;
 	}
-	
+
 	private function setupActivities()
 	{
 		$this->allActivities = array();
@@ -229,7 +229,7 @@ class XmlStateFileFetcher {
 			$this->createActivities($streamItem, $userId, $streamTitle);
 		}
 	}
-	
+
 	private function createActivities($streamItem, $userId, $streamTitle)
 	{
 		foreach ( $streamItem->activity as $activityItem ) {
@@ -244,7 +244,7 @@ class XmlStateFileFetcher {
 			$this->createActivity($userId, $activity);
 		}
 	}
-	
+
 	private function getMediaItems($activityItem)
 	{
 		$media = array();
@@ -256,10 +256,10 @@ class XmlStateFileFetcher {
 		}
 		return $media;
 	}
-	
+
 	public function createActivity($userId, $activity)
 	{
-		
+
 		if ($this->allActivities == null && !is_array($this->allActivities)) {
 			$this->setupActivities();
 		}

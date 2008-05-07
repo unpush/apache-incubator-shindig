@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
@@ -28,7 +28,7 @@ abstract class GadgetSigner {
 	 * Generates a token for the given gadget.
 	 * Implementations should also add their own user-related context data
 	 * to the token.
-	 * 
+	 *
 	 * Or generates a token from an input string. This call must produce a token that
 	 * will validate against a token produced directly from a gadget so that the
 	 * following function will always returns a valid GadgetToken:

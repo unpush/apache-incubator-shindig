@@ -79,7 +79,7 @@ public class BasicContentCacheTest extends TestCase {
   public void testEmptyCache() {
     assertNull(cache.getContent(createRequest("GET")));
   }
-  
+
   public void testCacheable() {
     RemoteContentRequest req = createRequest("GET");
     RemoteContent resp = createResponse(200, null, null);
@@ -154,7 +154,7 @@ public class BasicContentCacheTest extends TestCase {
     }
     assertEquals(cache.getContent(req), resp);
   }
-                                                 
+
 
   public void testNotCacheableForExpiresWithWait() {
     RemoteContentRequest req = createRequest("GET");

@@ -38,37 +38,37 @@ import java.util.List;
 public class FakeOAuthServiceProvider implements ContentFetcher {
 
   public final static String SP_HOST = "http://www.example.com";
-  
+
   public final static String REQUEST_TOKEN_URL =
       SP_HOST + "/request?param=foo";
-  public final static String ACCESS_TOKEN_URL = 
+  public final static String ACCESS_TOKEN_URL =
       SP_HOST + "/access";
   public final static String APPROVAL_URL =
       SP_HOST + "/authorize";
-  public final static String RESOURCE_URL = 
+  public final static String RESOURCE_URL =
       SP_HOST + "/data";
-  
+
   public final static String CONSUMER_KEY = "consumer";
   public final static String CONSUMER_SECRET = "secret";
-  
+
   private static class TokenState {
     String tokenSecret;
     OAuthConsumer consumer;
     State state;
     String userData;
-    
+
     enum State {
       PENDING,
       APPROVED,
-    } 
-    
+    }
+
     public TokenState(String tokenSecret, OAuthConsumer consumer) {
       this.tokenSecret = tokenSecret;
       this.consumer = consumer;
       this.state = State.PENDING;
       this.userData = null;
     }
-    
+
     public static TokenState makeAccessTokenState(String tokenSecret,
         OAuthConsumer consumer) {
       TokenState s = new TokenState(tokenSecret, consumer);
@@ -79,31 +79,31 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
     public void setState(State state) {
       this.state = state;
     }
-    
+
     public State getState() {
       return state;
     }
-    
+
     public String getSecret() {
       return tokenSecret;
     }
-    
+
     public void setUserData(String userData) {
       this.userData = userData;
     }
-    
+
     public String getUserData() {
       return userData;
     }
   }
-  
+
   /**
    * Table of OAuth access tokens
    */
   private final HashMap<String, TokenState> tokenState;
   private final OAuthValidator validator;
   private final OAuthConsumer consumer;
-  
+
   public FakeOAuthServiceProvider() {
     OAuthServiceProvider provider = new OAuthServiceProvider(
         REQUEST_TOKEN_URL, APPROVAL_URL, ACCESS_TOKEN_URL);
@@ -112,7 +112,7 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
     tokenState = new HashMap<String, TokenState>();
     validator = new SimpleOAuthValidator();
   }
-  
+
   public RemoteContent fetch(RemoteContentRequest request)
       throws GadgetException {
     String url = request.getUri().toASCIIString();
@@ -167,7 +167,7 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
     }
     return new OAuthMessage(method, url.getLocation(), params);
   }
-  
+
   /**
    * Utility class for parsing OAuth URLs.
    */
@@ -175,7 +175,7 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
     String location = null;
     String query = null;
     List<OAuth.Parameter> decodedQuery = null;
-    
+
     public ParsedUrl(String url) {
       int queryIndex = url.indexOf('?');
       if (queryIndex != -1) {
@@ -185,15 +185,15 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
         location = url;
       }
     }
-    
+
     public String getLocation() {
       return location;
     }
-    
+
     public String getRawQuery() {
       return query;
     }
-    
+
     public List<OAuth.Parameter> getParsedQuery() {
       if (decodedQuery == null) {
         if (query != null) {
@@ -204,7 +204,7 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
       }
       return decodedQuery;
     }
-    
+
     public String getQueryParam(String name) {
       for (OAuth.Parameter p : getParsedQuery()) {
         if (p.getKey().equals(name)) {
@@ -214,7 +214,7 @@ public class FakeOAuthServiceProvider implements ContentFetcher {
       return null;
     }
   }
-  
+
   /**
    * Used to fake a browser visit to approve a token.
    * @param url

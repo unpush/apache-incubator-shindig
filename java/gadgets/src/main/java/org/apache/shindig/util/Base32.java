@@ -5,9 +5,9 @@
  * licenses this file to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
@@ -30,13 +30,13 @@ public class Base32 implements BinaryDecoder, BinaryEncoder {
       new StringEncoding("0123456789abcdefghijklmnopqrstuv".toCharArray());
 
   public static byte[] encodeBase32(byte[] arg0) {
-    return ENCODER.encode(arg0).getBytes(); 
+    return ENCODER.encode(arg0).getBytes();
   }
-  
+
   public static byte[] decodeBase32(byte[] arg0) {
-    return ENCODER.decode(new String(arg0)); 
+    return ENCODER.decode(new String(arg0));
   }
-  
+
   @SuppressWarnings("unused")
   public byte[] decode(byte[] arg0) throws DecoderException {
     return decodeBase32(arg0);

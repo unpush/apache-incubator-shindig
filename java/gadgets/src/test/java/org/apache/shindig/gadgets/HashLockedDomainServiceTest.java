@@ -32,7 +32,7 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
       false, "http://somehost.com/somegadget.xml");
   ContainerConfig containerEnabledConfig;
   ContainerConfig containerRequiredConfig;
-  
+
   /**
    * Mocked out spec reader, rather than mocking the whole
    * Gadget object.
@@ -40,23 +40,23 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
   public static class FakeSpecReader extends GadgetReader {
     private boolean wantsLockedDomain;
     private String gadgetUrl;
-    
+
     public FakeSpecReader(boolean wantsLockedDomain, String gadgetUrl) {
       this.wantsLockedDomain = wantsLockedDomain;
       this.gadgetUrl = gadgetUrl;
     }
-    
+
     @Override
     protected boolean gadgetWantsLockedDomain(Gadget gadget) {
       return wantsLockedDomain;
     }
-    
+
     @Override
     protected String getGadgetUrl(Gadget gadget) {
       return gadgetUrl;
     }
   }
-  
+
   @Override
   protected void setUp() throws Exception {
     super.setUp();
@@ -67,7 +67,7 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
     json.put("gadgets.lockedDomainSuffix", "-a.example.com:8080");
     containerRequiredConfig  = new ContainerConfig(null);
     containerRequiredConfig.loadFromString(json.toString());
-    
+
     json.put("gadgets.lockedDomainRequired", false);
     containerEnabledConfig = new ContainerConfig(null);
     containerEnabledConfig.loadFromString(json.toString());
@@ -78,21 +78,21 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
   protected void tearDown() throws Exception {
     super.tearDown();
   }
-  
+
   public void testDisabledGlobally() {
     domainLocker = new HashLockedDomainService(
         containerRequiredConfig, "embed.com", false);
     assertTrue(domainLocker.embedCanRender("anywhere.com"));
     assertTrue(domainLocker.embedCanRender("embed.com"));
     assertTrue(domainLocker.gadgetCanRender("embed.com", gadget, "default"));
-    
+
     domainLocker = new HashLockedDomainService(
         containerEnabledConfig, "embed.com", false);
     assertTrue(domainLocker.embedCanRender("anywhere.com"));
     assertTrue(domainLocker.embedCanRender("embed.com"));
-    assertTrue(domainLocker.gadgetCanRender("embed.com", gadget, "default"));    
+    assertTrue(domainLocker.gadgetCanRender("embed.com", gadget, "default"));
   }
-  
+
   public void testEnabledForGadget() {
     domainLocker = new HashLockedDomainService(
         containerEnabledConfig, "embed.com", true);
@@ -111,7 +111,7 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
         "8uhr00296d2o3sfhqilj387krjmgjv3v-a.example.com:8080",
         target);
   }
-  
+
   public void testNotEnabledForGadget() {
     domainLocker = new HashLockedDomainService(
         containerEnabledConfig, "embed.com", true);
@@ -134,9 +134,9 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
         wantsLocked.getGadgetUrl(gadget), "default");
     assertEquals(
         "8uhr00296d2o3sfhqilj387krjmgjv3v-a.example.com:8080",
-        target);    
+        target);
   }
-  
+
   public void testRequiredForContainer() {
     domainLocker = new HashLockedDomainService(
         containerRequiredConfig, "embed.com", true);
@@ -153,7 +153,7 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
         "8uhr00296d2o3sfhqilj387krjmgjv3v-a.example.com:8080",
         target);
   }
-  
+
   public void testMissingConfig() throws Exception {
     JSONObject json = new JSONObject();
     json.put("gadgets.container",
@@ -166,7 +166,7 @@ public class HashLockedDomainServiceTest extends EasyMockTestCase {
     assertTrue(domainLocker.gadgetCanRender(
         "www.example.com", gadget, "default"));
   }
-  
+
   public void testMultiContainer() throws Exception {
     JSONObject json = new JSONObject();
     json.put("gadgets.container",

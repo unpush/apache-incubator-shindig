@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
@@ -24,13 +24,13 @@
 class BasicGadgetToken extends GadgetToken {
   /** serialized form of the token */
   private $token;
-  
+
   /** data from the token */
   private $tokenData;
-  
+
   /** tool to use for signing and encrypting the token */
   private $crypter;
-  
+
   private $OWNER_KEY = "o";
   private $APP_KEY = "a";
   private $VIEWER_KEY = "v";
@@ -45,18 +45,18 @@ class BasicGadgetToken extends GadgetToken {
   {
     return urlencode($this->token);
   }
-  
+
   /**
    * Generates a token from an input string
    * @param token String form of token
    * @param maxAge max age of the token (in seconds)
-   * @throws BlobCrypterException 
+   * @throws BlobCrypterException
    */
   static public function createFromToken($token, $maxAge)
   {
 	return new BasicGadgetToken($token, $maxAge, null, null, null, null, null, null);
   }
-  
+
   /**
    * Generates a token from an input array of values
    * @param owner owner of this gadget
@@ -64,22 +64,22 @@ class BasicGadgetToken extends GadgetToken {
    * @param app application id
    * @param domain domain of the container
    * @param appUrl url where the application lives
-   * @param moduleId module id of this gadget 
-   * @throws BlobCrypterException 
+   * @param moduleId module id of this gadget
+   * @throws BlobCrypterException
    */
   static public function createFromValues($owner, $viewer, $app, $domain, $appUrl, $moduleId)
   {
-  	return new BasicGadgetToken(null, null, $owner, $viewer, $app, $domain, $appUrl, $moduleId);
+	return new BasicGadgetToken(null, null, $owner, $viewer, $app, $domain, $appUrl, $moduleId);
   }
-  
-  
+
+
   public function __construct($token, $maxAge, $owner, $viewer, $app, $domain, $appUrl, $moduleId)
   {
-  	$this->crypter = new BasicBlobCrypter();
-  	if (!empty($token)) {
+	$this->crypter = new BasicBlobCrypter();
+	if (!empty($token)) {
       $this->token = $token;
-      $this->tokenData = $this->crypter->unwrap($token, $maxAge);  	
-  	} else {
+      $this->tokenData = $this->crypter->unwrap($token, $maxAge);
+	} else {
       $this->tokenData = array();
       $this->tokenData[$this->OWNER_KEY] = $owner;
       $this->tokenData[$this->VIEWER_KEY] = $viewer;
@@ -88,7 +88,7 @@ class BasicGadgetToken extends GadgetToken {
       $this->tokenData[$this->APPURL_KEY] = $appUrl;
       $this->tokenData[$this->MODULE_KEY] = $moduleId;
       $this->token = $this->crypter->wrap($this->tokenData);
-  	}
+	}
   }
 
   /**

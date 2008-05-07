@@ -40,7 +40,7 @@ Using Shindig Gadget Container JavaScript
 
 	 Check "gadgets.js" for other options to be set in createGadget. If you are
 	debugging your own gadgets you can consider to use specVersion to get a more
-	optimal use of the cache. Alternatively, gadgets.container.setNoCache(1) 
+	optimal use of the cache. Alternatively, gadgets.container.setNoCache(1)
 
       ii) Add it to the container. Example:
 

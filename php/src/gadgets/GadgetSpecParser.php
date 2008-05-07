@@ -15,13 +15,13 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class SpecParserException extends Exception {}
 
 class GadgetSpecParser {
-	
+
 	public function parse($xml, $context)
 	{
 		if (empty($xml)) {
@@ -53,7 +53,7 @@ class GadgetSpecParser {
 		//TODO Parse icons
 		return $gadget;
 	}
-	
+
 	private function processModulePrefs(&$gadget, $ModulePrefs)
 	{
 		$attributes = $ModulePrefs->attributes();
@@ -61,7 +61,7 @@ class GadgetSpecParser {
 			throw new SpecParserException("Missing or empty \"title\" attribute.");
 		}
 		// Get ModulePrefs base and extended attributes
-		// See http://code.google.com/apis/gadgets/docs/gadgets-extended-xsd.html 
+		// See http://code.google.com/apis/gadgets/docs/gadgets-extended-xsd.html
 		// (trim is used here since it not only cleans up the text, but also auto-casts the SimpleXMLElement to a string)
 		$gadget->title = trim($attributes['title']);
 		$gadget->author = isset($attributes['author']) ? trim($attributes['author']) : '';
@@ -93,7 +93,7 @@ class GadgetSpecParser {
 			$gadget->localeSpecs[] = $this->processLocale($locale);
 		}
 	}
-	
+
 	private function processLocale($locale)
 	{
 		$attributes = $locale->attributes();
@@ -109,7 +109,7 @@ class GadgetSpecParser {
 		$locale->locale = new Locale($languageAttr, $countryAttr);
 		return $locale;
 	}
-	
+
 	private function processUserPref(&$gadget, $pref)
 	{
 		$attributes = $pref->attributes();
@@ -136,7 +136,7 @@ class GadgetSpecParser {
 		}
 		$gadget->userPrefs[] = $preference;
 	}
-	
+
 	private function processContent(&$gadget, $content)
 	{
 		$attributes = $content->attributes();
@@ -157,12 +157,12 @@ class GadgetSpecParser {
 			} else {
 				if ($gadget->views[$view]->getName() == $viewSpec->getName() && $viewSpec->getType() != $gadget->views[$view]->getType()) {
 					throw new SpecParserException("You may not mix content " . " types in the same view.");
-				}				
+				}
 				$gadget->views[$view]->addContent($html);
 			}
 		}
 	}
-	
+
 	private function processFeature(&$gadget, $feature, $required)
 	{
 		$featureSpec = new FeatureSpec();

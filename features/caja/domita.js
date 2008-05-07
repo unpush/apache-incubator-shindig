@@ -159,7 +159,7 @@ attachDocumentStub = (function () {
       attribs.push('TARGET', '_blank');
       return attribs;
     };
-    
+
 
     /** Sanitize HTML applying the appropriate transformations. */
     function sanitizeHtml(htmlText) {

@@ -15,18 +15,18 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
  * This class deals with the gadget rendering requests (in default config this
  * would be /gadgets/ifr?url=<some gadget's url>). It uses the gadget server and
  * gadget context to render the xml to a valid html file, and outputs it.
- * 
+ *
  */
 class GadgetRenderingServlet extends HttpServlet {
 	private $context;
-	
+
 	/**
 	 * Creates the gadget using the GadgetServer class and calls outputGadget
 	 *
@@ -37,11 +37,11 @@ class GadgetRenderingServlet extends HttpServlet {
 			if (empty($_GET['url'])) {
 				throw new GadgetException("Missing required parameter: url");
 			}
-			// GadgetContext builds up all the contextual variables (based on the url or post) 
+			// GadgetContext builds up all the contextual variables (based on the url or post)
 			// plus instances all required classes (feature registry, fetcher, blacklist, etc)
 			$this->context = new GadgetContext('GADGET');
 			// Unfortunatly we can't do caja content filtering here, hoping we'll have a RPC service
-			// or command line caja to use for this at some point 
+			// or command line caja to use for this at some point
 			$gadgetServer = new GadgetServer();
 			$gadget = $gadgetServer->processGadget($this->context);
 			$this->outputGadget($gadget, $this->context);
@@ -49,7 +49,7 @@ class GadgetRenderingServlet extends HttpServlet {
 			$this->outputError($e);
 		}
 	}
-	
+
 	/**
 	 * If an error occured (Exception) this function echo's the Exception's message
 	 * and if the config['debug'] is true, shows the debug backtrace in a div
@@ -69,7 +69,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		}
 		echo "</body></html>";
 	}
-	
+
 	/**
 	 * Takes the gadget to output, and depending on its content type calls either outputHtml-
 	 * or outputUrlGadget
@@ -89,7 +89,7 @@ class GadgetRenderingServlet extends HttpServlet {
 				break;
 		}
 	}
-	
+
 	/**
 	 * Outputs a html content type gadget.
 	 * It creates a html page, with the javascripts from the features inline into the page, plus
@@ -174,7 +174,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		}
 		echo $output;
 	}
-	
+
 	/**
 	 * Output's a URL content type gadget, it adds libs=<list:of:js:libraries>.js and user preferences
 	 * to the href url, and redirects the browser to it
@@ -209,7 +209,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		header('Location: ' . $redirURI);
 		die();
 	}
-	
+
 	/**
 	 * Returns the requested libs (from getjsUrl) with the libs_param_name prepended
 	 * ie: in libs=core:caja:etc.js format
@@ -226,7 +226,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		$ret .= $this->getJsUrl($libs, $gadget);
 		return $ret;
 	}
-	
+
 	/**
 	 * Returns the user preferences in &up_<name>=<val> format
 	 *
@@ -246,7 +246,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		}
 		return $ret;
 	}
-	
+
 	/**
 	 * generates the library string (core:caja:etc.js) including a checksum of all the
 	 * javascript content (?v=<sha1 of js) for cache busting
@@ -283,7 +283,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		$buf .= ".js?v=" . md5($inlineJs);
 		return $buf;
 	}
-	
+
 	private function appendJsConfig($context, $gadget)
 	{
 		$container = $context->getContainer();
@@ -298,7 +298,7 @@ class GadgetRenderingServlet extends HttpServlet {
 		}
 		return "gadgets.config.init(" . json_encode($gadgetConfig) . ");\n";
 	}
-	
+
 	private function appendMessages($gadget)
 	{
 		$msgs = '';

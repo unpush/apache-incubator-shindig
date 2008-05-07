@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class JsonRpcServlet extends HttpServlet {
@@ -46,7 +46,7 @@ class JsonRpcServlet extends HttpServlet {
 			echo "</body></html>";
 		}
 	}
-	
+
 	public function doGet()
 	{
 		header("HTTP/1.0 400 Bad Request", true, 400);

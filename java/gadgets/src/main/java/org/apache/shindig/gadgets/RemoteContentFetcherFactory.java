@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
- * Factory for ContentFetcher's that retrieve remote content 
+ * Factory for ContentFetcher's that retrieve remote content
  */
 public class RemoteContentFetcherFactory implements Provider<ContentFetcher> {
 

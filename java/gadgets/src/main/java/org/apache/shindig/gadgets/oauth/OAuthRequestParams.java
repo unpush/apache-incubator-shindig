@@ -37,7 +37,7 @@ public class OAuthRequestParams {
     tokenName = request.getParameter(TOKEN_PARAM);
     origClientState = request.getParameter(CLIENT_STATE_PARAM);
   }
-  
+
   // Really only use this for testing, please
   public OAuthRequestParams(String serviceName, String tokenName,
       String origClientState) {
@@ -45,7 +45,7 @@ public class OAuthRequestParams {
     this.tokenName = tokenName;
     this.origClientState = origClientState;
   }
-  
+
   public String getServiceName() {
     return serviceName;
   }

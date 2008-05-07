@@ -23,14 +23,14 @@
  * view value after views are split on commas.
  */
 class ViewSpec {
-	
+
 	public $name;
 	public $type;
 	public $href;
 	public $quirks;
 	public $content;
 	public $view;
-	
+
 	public function __construct($name, $gadgetContent)
 	{
 		$attributes = $gadgetContent->attributes();
@@ -52,37 +52,37 @@ class ViewSpec {
 			$this->type = 'HTML';
 		}
 	}
-	
+
 	public function getName()
 	{
 		return $this->name;
 	}
-	
+
 	public function getType()
 	{
 		return $this->type;
 	}
-	
+
 	public function getHref()
 	{
 		return $this->href;
 	}
-	
+
 	public function getQuirks()
 	{
 		return $this->quirks;
 	}
-	
+
 	public function getContent()
 	{
 		return $this->content;
 	}
-	
+
 	public function getView()
 	{
 		return $this->view;
 	}
-	
+
 	public function addContent($data)
 	{
 		$this->content .= $data;

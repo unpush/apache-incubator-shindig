@@ -15,11 +15,11 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class MessageBundleParser {
-	
+
 	private function processMessage(&$messages, $msg)
 	{
 		$attr = $msg->attributes();
@@ -27,7 +27,7 @@ class MessageBundleParser {
 			$messages[trim($attr['name'])] = trim($msg);
 		}
 	}
-	
+
 	public function parse($xml)
 	{
 		$doc = simplexml_load_string($xml);

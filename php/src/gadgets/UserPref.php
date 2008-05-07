@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class UserPref {
@@ -27,32 +27,32 @@ class UserPref {
 	public $required;
 	public $enumValues;
 	public $contentType;
-	
+
 	public function getName()
 	{
 		return $this->name;
 	}
-	
+
 	public function getDisplayName()
 	{
 		return $this->displayName;
 	}
-	
+
 	public function getDefaultValue()
 	{
 		return $this->defaultValue;
 	}
-	
+
 	public function isRequired()
 	{
 		return $this->required;
 	}
-	
+
 	public function getDataType()
 	{
 		return $this->dataType;
 	}
-	
+
 	public function getEnumValues()
 	{
 		return $this->enumValues;

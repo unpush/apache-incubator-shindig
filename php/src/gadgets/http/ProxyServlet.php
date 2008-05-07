@@ -15,17 +15,17 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class ProxyServlet extends HttpServlet {
-	
+
 	public function doGet()
 	{
 		$this->noHeaders = true;
 		$context = new GadgetContext('GADGET');
 		// those should be doable in one statement, but php seems to still evauluate the second ? and : pair,
-		// so throws an error about undefined index on post, even though it found it in get ... odd bug 
+		// so throws an error about undefined index on post, even though it found it in get ... odd bug
 		$url = isset($_GET['url']) ? $_GET['url'] : false;
 		if (! $url) {
 			$url = isset($_POST['url']) ? $_POST['url'] : false;
@@ -48,7 +48,7 @@ class ProxyServlet extends HttpServlet {
 			$proxyHandler->fetch($url, $gadgetSigner, $method);
 		}
 	}
-	
+
 	public function doPost()
 	{
 		$this->doGet();

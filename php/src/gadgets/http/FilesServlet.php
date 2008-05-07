@@ -15,7 +15,7 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 /**
@@ -24,7 +24,7 @@
  * the php version too
  */
 class FilesServlet extends HttpServlet {
-	
+
 	/**
 	 * Handles the get file request, if the file exists and is in the correct
 	 * location it's echo'd to the browser (with a basic content type guessing
@@ -38,7 +38,7 @@ class FilesServlet extends HttpServlet {
 		$file = str_replace(Config::get('web_prefix') . '/gadgets/files/', '', $_SERVER["REQUEST_URI"]);
 		$file = Config::get('javascript_path') . $file;
 		// make sure that the real path name is actually in the javascript_path, so people can't abuse this to read
-		// your private data from disk .. otherwise this would be a huge privacy and security issue 
+		// your private data from disk .. otherwise this would be a huge privacy and security issue
 		if (substr(realpath($file), 0, strlen(realpath(Config::get('javascript_path')))) != realpath(Config::get('javascript_path'))) {
 			header("HTTP/1.0 400 Bad Request", true);
 			echo "<html><body><h1>400 - Bad Request</h1></body></html>";

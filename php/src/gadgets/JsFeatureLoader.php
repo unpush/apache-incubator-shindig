@@ -15,17 +15,17 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class JsFeatureLoader {
 	private $debug;
-	
+
 	public function __construct($debug)
 	{
 		$this->debug = $debug;
 	}
-	
+
 	public function loadFeatures($path, $registry)
 	{
 		$registered = array();
@@ -42,12 +42,12 @@ class JsFeatureLoader {
 		}
 		return $entries;
 	}
-	
+
 	private function loadFiles($path, &$features)
 	{
 		if (is_dir($path)) {
 			foreach (glob("$path/*") as $file) {
-				// prevents us from looping over '.', '..' and 'hidden files', this last bit IS 
+				// prevents us from looping over '.', '..' and 'hidden files', this last bit IS
 				// different from the java version but it's the unix standard really..
 				if (substr(basename($file), 0, 1) != '.') {
 					$features = $this->loadFiles($file, $features);
@@ -63,7 +63,7 @@ class JsFeatureLoader {
 		}
 		return $features;
 	}
-	
+
 	private function processFile($file)
 	{
 		$feature = null;
@@ -74,7 +74,7 @@ class JsFeatureLoader {
 		}
 		return $feature;
 	}
-	
+
 	private function register(&$registry, $feature, $registered, $all)
 	{
 		if (isset($registered[$feature->name])) {
@@ -89,7 +89,7 @@ class JsFeatureLoader {
 		$registered[] = $feature->name;
 		return $registry->register($feature->name, $feature->deps, $factory);
 	}
-	
+
 	private function parse($content, $path)
 	{
 		$doc = simplexml_load_string($content);
@@ -99,7 +99,7 @@ class JsFeatureLoader {
 			throw new GadgetException('Invalid name in feature: ' . $path);
 		}
 		$feature->name = trim($doc->name);
-		
+
 		foreach ($doc->gadget as $gadget) {
 			$feature = $this->processContext($feature, $gadget, false);
 		}
@@ -111,7 +111,7 @@ class JsFeatureLoader {
 		}
 		return $feature;
 	}
-	
+
 	private function processContext(&$feature, $context, $isContainer)
 	{
 		foreach ($context->script as $script) {

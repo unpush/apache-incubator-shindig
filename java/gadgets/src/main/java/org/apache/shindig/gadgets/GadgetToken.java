@@ -47,7 +47,7 @@ public interface GadgetToken {
    * @return the application id from the token, or null if there is none.
    */
   public String getAppId();
-  
+
   /**
    * @return the domain from the token, or null if there is none.
    */

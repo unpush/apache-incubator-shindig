@@ -15,24 +15,24 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class FeatureSpec {
 	public $name;
 	public $params = array();
 	public $optional;
-	
+
 	public function getName()
 	{
 		return $this->name;
 	}
-	
+
 	public function getParams()
 	{
 		return $this->params;
 	}
-	
+
 	public function isOptional()
 	{
 		return $this->optional;

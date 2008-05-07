@@ -15,24 +15,24 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied. See the License for the
  * specific language governing permissions and limitations under the License.
- * 
+ *
  */
 
 class LocaleSpec {
 	public $url;
 	public $locale;
 	public $rightToLeft;
-	
+
 	public function getURI()
 	{
 		return $this->url;
 	}
-	
+
 	public function getLocale()
 	{
 		return $this->locale;
 	}
-	
+
 	public function isRightToLeft()
 	{
 		return $this->rightToLeft;

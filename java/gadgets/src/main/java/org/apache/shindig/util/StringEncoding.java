@@ -47,7 +47,7 @@ public class StringEncoding {
       throw new AssertionError(Arrays.toString(digits));
     }
   }
-  
+
   /** Returns the given bytes in their encoded form. */
   public String encode(byte[] data) {
     if (data.length == 0) {
@@ -76,7 +76,7 @@ public class StringEncoding {
     }
     return result.toString();
   }
-  
+
   /** Decodes the given encoded string and returns the original raw bytes. */
   public byte[] decode(String encoded) {
     if (encoded.length() == 0) {
@@ -99,5 +99,5 @@ public class StringEncoding {
     }
     assert next == outLength && bitsLeft < SHIFT;
     return result;
-  }  
+  }
 }
