@@ -128,6 +128,6 @@ public class JsServlet extends InjectedServlet {
     }
     resp.setContentType("text/javascript; charset=utf-8");
     resp.setContentLength(jsData.length());
-    resp.getOutputStream().write(jsData.toString().getBytes());
+    resp.getOutputStream().write(jsData.toString().getBytes("UTF-8"));
   }
 }
