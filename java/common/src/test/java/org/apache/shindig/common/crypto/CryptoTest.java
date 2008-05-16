@@ -45,34 +45,34 @@ public class CryptoTest {
   @Test
   public void testHmacSha1() throws Exception { 
     String key = "abcd1234";
-    String val = "your mother is a hedgehog";
+    String val = "your mother is a hedgehog (\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc)";
     byte[] expected = new byte[] {
-        -21, 2, 47, -101, 9, -40, 18, 43, 76, 117,
-        -51, 115, -122, -91, 39, 26, -18, 122, 30, 90,     
+        -45, -20, 16, -21, -64, 8, 79, -41, -28, -101,
+        -108, 73, -113, 79, 57, 40, 107, -1, 107, -61,
     };
-    byte[] hmac = Crypto.hmacSha1(key.getBytes(), val.getBytes());
+    byte[] hmac = Crypto.hmacSha1(key.getBytes("UTF-8"), val.getBytes("UTF-8"));
     assertArrayEquals(expected, hmac);
   }
   
   @Test
   public void testHmacSha1Verify() throws Exception { 
     String key = "abcd1234";
-    String val = "your mother is a hedgehog";
+    String val = "your mother is a hedgehog (\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc)";
     byte[] expected = new byte[] {
-        -21, 2, 47, -101, 9, -40, 18, 43, 76, 117,
-        -51, 115, -122, -91, 39, 26, -18, 122, 30, 90,     
+        -45, -20, 16, -21, -64, 8, 79, -41, -28, -101,
+        -108, 73, -113, 79, 57, 40, 107, -1, 107, -61,
     };
-    Crypto.hmacSha1Verify(key.getBytes(), val.getBytes(), expected);
+    Crypto.hmacSha1Verify(key.getBytes("UTF-8"), val.getBytes("UTF-8"), expected);
   }
   
   
   @Test
   public void testHmacSha1VerifyTampered() throws Exception { 
     String key = "abcd1234";
-    String val = "your mother is a hedgehog";
+    String val = "your mother is a hedgehog (\u00e4\u00f6\u00fc\u00c4\u00d6\u00dc)";
     byte[] expected = new byte[] {
-        -21, 2, 47, -101, 9, -40, 18, 43, 76, 117,
-        -51, 115, -122, -91, 39, 0, -18, 122, 30, 90,     
+        -45, -20, 16, -21, -64, 15, 79, -41, -28, -101,
+        -108, 73, -113, 79, 57, 40, 107, -1, 107, -61,
     };
     try {
       Crypto.hmacSha1Verify(key.getBytes(), val.getBytes(), expected);
