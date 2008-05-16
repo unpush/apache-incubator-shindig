@@ -101,8 +101,8 @@ public class HttpResponse {
    *
    * @param body
    */
-  public HttpResponse(String body) {
-    this(SC_OK, body.getBytes(), null);
+  public HttpResponse(String body) throws UnsupportedEncodingException {
+    this(SC_OK, body.getBytes(DEFAULT_ENCODING), null);
   }
 
   /**

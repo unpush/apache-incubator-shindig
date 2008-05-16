@@ -37,6 +37,7 @@ public class JsLibraryTest extends EasyMockTestCase {
         "gadgets.test.pattern = function() {" +
         "};";
   private final static String URL_JS = "while(true){alert('hello');}";
+  private final static String URL_I18N_JS = "while(true){alert('\u00a1Error en Espa\u00f1a!');}";
 
   public void testInline() throws GadgetException {
     JsLibrary lib
@@ -97,4 +98,21 @@ public class JsLibraryTest extends EasyMockTestCase {
     assertEquals(URL_JS, lib.getContent());
     assertEquals(URL_JS, lib.getDebugContent());
   }
+  public void testNonAsciiUrl() throws Exception {
+    HttpFetcher mockFetcher = mock(HttpFetcher.class);
+    URI location = new URI("http://example.org/file.js");
+    HttpRequest request = new HttpRequest(location);
+    HttpResponse response
+        = new HttpResponse(URL_I18N_JS);
+    expect(mockFetcher.fetch(eq(request))).andReturn(response);
+    replay();
+    JsLibrary lib = JsLibrary.create(
+        JsLibrary.Type.URL, location.toString(), null, mockFetcher);
+    verify();
+
+    // No type test here because it could potentially change.
+    assertEquals(URL_I18N_JS, lib.getContent());
+    assertEquals(URL_I18N_JS, lib.getDebugContent());
+  }
+
 }
