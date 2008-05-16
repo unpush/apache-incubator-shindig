@@ -109,7 +109,7 @@ public class JsFeatureLoaderTest extends GadgetTestFixture {
                  "</feature>";
     HttpRequest request = new HttpRequest(JS_URL);
     HttpResponse response
-        = new HttpResponse(200, ALT_JS_CONTENT.getBytes(), null);
+        = new HttpResponse(200, ALT_JS_CONTENT.getBytes("US-ASCII"), null);
     expect(fetcher.fetch(eq(request))).andReturn(response);
     replay();
     GadgetFeatureRegistry.Entry entry = loader.loadFeature(registry, xml);

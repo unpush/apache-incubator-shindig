@@ -34,7 +34,11 @@ public class Base32 implements BinaryDecoder, BinaryEncoder {
       new StringEncoding("0123456789abcdefghijklmnopqrstuv".toCharArray());
 
   public static byte[] encodeBase32(byte[] arg0) {
-    return ENCODER.encode(arg0).getBytes();
+    try {
+        return ENCODER.encode(arg0).getBytes("US-ASCII");
+    } catch (java.io.UnsupportedEncodingException uee) {
+        throw new IllegalArgumentException(uee); // should not happen
+    }
   }
 
   public static byte[] decodeBase32(byte[] arg0) {

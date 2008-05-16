@@ -87,7 +87,7 @@ public class JsLibraryTest extends EasyMockTestCase {
     URI location = new URI("http://example.org/file.js");
     HttpRequest request = new HttpRequest(location);
     HttpResponse response
-        = new HttpResponse(HttpResponse.SC_OK, URL_JS.getBytes(), null);
+        = new HttpResponse(HttpResponse.SC_OK, URL_JS.getBytes("US-ASCII"), null);
     expect(mockFetcher.fetch(eq(request))).andReturn(response);
     replay();
     JsLibrary lib = JsLibrary.create(
