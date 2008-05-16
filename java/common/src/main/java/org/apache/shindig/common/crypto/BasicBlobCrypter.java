@@ -137,7 +137,7 @@ public class BasicBlobCrypter implements BlobCrypter {
   public Map<String, String> unwrap(String in, int maxAgeSec)
   throws BlobCrypterException {
     try {
-      byte[] bin = Base64.decodeBase64(in.getBytes()); //FIXME: encoding
+      byte[] bin = Base64.decodeBase64(in.getBytes("US-ASCII")); //Base64 is US-ASCII
       byte[] hmac = new byte[Crypto.HMAC_SHA1_LEN];
       byte[] cipherText = new byte[bin.length-Crypto.HMAC_SHA1_LEN];
       System.arraycopy(bin, 0, cipherText, 0, cipherText.length);
