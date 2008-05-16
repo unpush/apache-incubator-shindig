@@ -25,6 +25,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -155,7 +156,11 @@ public class GadgetSpec {
 
     // This might not be good enough; should we take message bundle changes
     // into account?
-    this.checksum = HashUtil.checksum(xml.getBytes()); //FIXME: encoding
+    try {
+        this.checksum = HashUtil.checksum(xml.getBytes("UTF-8")); // checksum is of utf-8 repr
+    } catch (UnsupportedEncodingException uee) {
+        throw new SpecParserException("Error decoding xml: " + uee.getMessage());
+    }
 
     NodeList children = doc.getChildNodes();
 
